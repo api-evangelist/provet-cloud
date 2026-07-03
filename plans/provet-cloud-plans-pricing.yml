@@ -1,0 +1,109 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Provet Cloud
+providerId: provet-cloud
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Veterinary
+- Practice Management
+- PIMS
+- Nordhealth
+- Plans
+description: >-
+  Provet Cloud is sold as a per-practice SaaS subscription by Nordhealth, priced
+  primarily on the number of veterinarians at the practice - support staff are
+  typically included at no additional per-user charge. Published third-party
+  listings show a base subscription roughly in the $99-$129 per veterinarian per
+  month range, with the practice's total fee driven by user count plus chosen
+  add-ons and integrations; large multi-site and enterprise/referral deployments
+  are custom-quoted (some listings cite implementation packages starting far
+  higher). The REST API and webhooks are an included capability of the platform
+  for approved integration partners rather than a separately metered product -
+  there is no published per-call API price. Exact current rates are set by
+  Nordhealth sales and are not reconciled here.
+notes: >-
+  Pricing figures come from public aggregator listings (Capterra, G2, GetApp)
+  and Provet's own pricing page and should be confirmed with Nordhealth sales.
+  Integration access must be approved by Provet's support team per installation;
+  there is no self-serve API billing tier.
+sources:
+- https://www.provet.cloud/pricing
+- https://www.provet.com/pricing
+- https://www.capterra.com/p/137569/Provet-Cloud/
+- https://developers.provetcloud.com/restapi/
+plans:
+- id: provet-cloud-base
+  name: Base Subscription
+  type: paid
+  description: >-
+    Core Provet Cloud practice management for a single clinic, billed monthly per
+    veterinarian; support staff included. Includes access to the REST API and
+    webhooks for approved integrations.
+  entries:
+  - label: Per Veterinarian
+    name: per_veterinarian
+    type: flat
+    metric: seat
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approx $99-$129 per veterinarian / month (confirm with sales)
+    userMultiplied: true
+  elements:
+  - name: Practice Management (PIMS)
+  - name: REST API Access
+  - name: Webhooks
+  - name: Support Staff Included
+- id: provet-cloud-addons
+  name: Add-ons & Integrations
+  type: paid
+  description: >-
+    Optional modules and integrations (for example Provet Pay payments, online
+    booking, ERP/accounting connectors, imaging/RIS) added on top of the base
+    subscription. Priced per add-on.
+  entries:
+  - label: Add-on Modules
+    name: addons
+    type: flat
+    metric: module
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: varies by module (confirm with sales)
+    userMultiplied: false
+  elements:
+  - name: Provet Pay
+  - name: Online Booking
+  - name: ERP / Accounting Integration
+  - name: Imaging / RIS
+- id: provet-cloud-enterprise
+  name: Enterprise / Referral & Multi-Site
+  type: enterprise
+  description: >-
+    Custom-quoted plan for hospitals, referral practices, and multi-site groups,
+    including implementation, onboarding, and negotiated terms. Contact
+    Nordhealth.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: custom quote
+    userMultiplied: false
+  elements:
+  - name: Multi-Site Management
+  - name: Implementation & Onboarding
+  - name: Priority Support
+  - name: Custom Integrations
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

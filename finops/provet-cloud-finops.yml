@@ -1,0 +1,102 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Provet Cloud
+providerId: provet-cloud
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Veterinary
+- Practice Management
+- PIMS
+- Nordhealth
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Provet Cloud spend. Provet Cloud is a SaaS subscription from
+  Nordhealth billed primarily per veterinarian per month, plus optional add-ons
+  and integrations (Provet Pay, online booking, ERP/accounting, imaging/RIS) and
+  custom-quoted enterprise/multi-site agreements. The REST API and webhooks are
+  an included capability for approved integration partners, not a separately
+  metered line item, so there is no per-call API cost - the cost driver for an
+  integration is the underlying practice subscription and any paid add-on modules
+  it depends on. Payment-processing add-ons (Provet Pay) carry their own
+  transaction-based fees.
+notes: >-
+  Per-veterinarian and add-on rates are set by Nordhealth sales and are not
+  reconciled here. Model API-driven integrations as riding on the existing Provet
+  Cloud subscription rather than as usage-metered API spend.
+sources:
+- https://www.provet.cloud/pricing
+- https://www.provet.com/pricing
+- https://developers.provetcloud.com/restapi/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Nordhealth
+serviceCategory: Business Application Software (Veterinary PIMS)
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Provet Cloud
+  ServiceCategory: Business Application Software
+  ProviderName: Provet Cloud
+  PublisherName: Nordhealth
+  InvoiceIssuerName: Nordhealth
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: veterinarian_seats
+  description: Number of veterinarians on the practice subscription, the primary billing driver.
+  unit: seats
+  aggregation: max
+  dimensions:
+  - installation
+  - department
+- name: addon_modules
+  description: Paid add-on modules and integrations enabled on the subscription.
+  unit: modules
+  aggregation: sum
+  dimensions:
+  - installation
+- name: provet_pay_transactions
+  description: Payment transactions processed through the Provet Pay add-on, billed per transaction.
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - installation
+principles:
+- name: Visibility
+  description: >-
+    Track the per-veterinarian seat count and the set of paid add-ons per
+    installation; attribute Provet Pay transaction fees to the clinic that
+    generated them.
+- name: Allocation
+  description: >-
+    Map subscription and add-on costs to clinics/departments so multi-site
+    groups can see cost per location.
+- name: Optimization
+  description: >-
+    Right-size veterinarian seats, retire unused add-ons, and use webhooks
+    instead of high-frequency polling to keep integrations efficient within the
+    per-endpoint rate limits.
+- name: Accountability
+  description: >-
+    Assign a subscription owner per installation and review seat counts and
+    add-on spend against the Nordhealth agreement on each billing cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

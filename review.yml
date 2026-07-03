@@ -1,0 +1,172 @@
+aid: provet-cloud
+name: Provet Cloud
+review:
+  question: Does Provet Cloud expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-03'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Provet Cloud's public developer surface
+    (developers.provetcloud.com) is a request/response REST API over HTTPS at
+    https://provetcloud.com/<provet_id>/api/0.1/. Its only asynchronous,
+    server-initiated mechanism is outbound webhooks: Provet Cloud POSTs an HTTP
+    request carrying the changed object's ID to a URL the integration configures,
+    and retries up to 10 times. That is server-to-endpoint HTTP, not a WebSocket
+    or SSE stream the client connects to, so there is no bidirectional/streaming
+    transport on Provet Cloud's own API to model in AsyncAPI.
+findings:
+  summary: |
+    Provet Cloud does not publish a documented public WebSocket API. Provet Cloud
+    is a cloud veterinary practice management system (PIMS) by Nordhealth. It
+    exposes a documented, browsable REST API (version 0.1) at
+    https://provetcloud.com/<provet_id>/api/0.1/ (installation-specific; regional
+    domains include us.provetcloud.com and enterprise.provetcloud.com) returning
+    JSON. Authorization is OAuth 2.0 - Client Credentials for backend services and
+    Authorization Code with PKCE for user-facing apps - via
+    https://provetcloud.com/<provet_id>/oauth2/token/ with the "restapi" scope; a
+    legacy "Authorization: Token <key>" header exists but is deprecated.
+    Integrations must be registered and approved by Provet's support team per
+    installation, so it is best described as a documented partner/customer API
+    rather than a fully self-serve public one. The asynchronous surface is
+    outbound webhooks (60+ triggers), which are HTTP POST callbacks, not a
+    WebSocket. No ws:// or wss:// endpoint is documented anywhere in the Provet
+    Cloud developer documentation as of the review date.
+  documentedApi: |
+    Public, freely browsable docs at https://developers.provetcloud.com/restapi/.
+    Real REST resources confirmed from the how-to and reference pages include:
+    /client/, /patient/ (incl. /patient/bulk/), /phonenumber/, /consultation/
+    (with /update_status/, /mark_sent/, and sub-resources medicines, procedures,
+    supplies, foods, consultationdiagnosis, consultationnote,
+    consultationdischargeinstruction), /consultationitem/, /appointment/ (with
+    /send_appointment_confirmation/), /appointment_reminder/, /onlinebookingclient/,
+    /onlinebookingpatient/, /invoice/ (with /full_refund/ and /partial_refund/),
+    /invoicerow/, /invoicepayment/ (with /cancel_payment/), /unallocatedpayment/,
+    /item/, /department/, /reason/, /user/, /custom_fields/, and code lists
+    /codelist/species/, /codelist/breeds/, /codelist/diagnoses/.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://provetcloud.com/{provet_id}/api/0.1/
+      documented: true
+      note: >-
+        Primary API. JSON request/response. OAuth 2.0 (Client Credentials or
+        Authorization Code + PKCE), scope "restapi". Regional domains include
+        us.provetcloud.com and enterprise.provetcloud.com.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: >-
+        Outbound HTTP POST callbacks for 60+ triggers, carrying the changed
+        object's ID; scoped organization-wide or per department; retried up to 10
+        times on non-200. Server-to-endpoint HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: >-
+        No WebSocket endpoint is documented anywhere in the Provet Cloud REST API
+        documentation as of the review date.
+  endpointsConfirmedRest:
+    - GET    /api/0.1/client/
+    - POST   /api/0.1/client/
+    - PATCH  /api/0.1/client/{id}/
+    - GET    /api/0.1/client/{id}/custom_field_values/
+    - POST   /api/0.1/client/{id}/custom_field_values/
+    - GET    /api/0.1/phonenumber/
+    - POST   /api/0.1/phonenumber/
+    - GET    /api/0.1/patient/
+    - POST   /api/0.1/patient/
+    - POST   /api/0.1/patient/bulk/
+    - PATCH  /api/0.1/patient/{id}/
+    - GET    /api/0.1/patient/{id}/custom_field_values/
+    - POST   /api/0.1/patient/{id}/custom_field_values/
+    - POST   /api/0.1/appointment/
+    - POST   /api/0.1/appointment/{id}/send_appointment_confirmation/
+    - POST   /api/0.1/appointment_reminder/
+    - POST   /api/0.1/onlinebookingclient/
+    - POST   /api/0.1/onlinebookingpatient/
+    - GET    /api/0.1/consultation/
+    - POST   /api/0.1/consultation/
+    - GET    /api/0.1/consultation/{id}/
+    - POST   /api/0.1/consultation/{id}/update_status/
+    - POST   /api/0.1/consultation/{id}/mark_sent/
+    - GET    /api/0.1/consultation/{id}/medicines/
+    - POST   /api/0.1/consultation/{id}/medicines/
+    - GET    /api/0.1/consultation/{id}/procedures/
+    - POST   /api/0.1/consultation/{id}/procedures/
+    - GET    /api/0.1/consultation/{id}/supplies/
+    - POST   /api/0.1/consultation/{id}/supplies/
+    - GET    /api/0.1/consultation/{id}/foods/
+    - POST   /api/0.1/consultation/{id}/foods/
+    - POST   /api/0.1/consultation/{id}/consultationdiagnosis/
+    - POST   /api/0.1/consultation/{id}/consultationnote/
+    - POST   /api/0.1/consultation/{id}/consultationdischargeinstruction/
+    - GET    /api/0.1/consultationitem/
+    - GET    /api/0.1/invoice/
+    - POST   /api/0.1/invoice/{id}/full_refund/
+    - POST   /api/0.1/invoice/{id}/partial_refund/
+    - GET    /api/0.1/invoicerow/
+    - GET    /api/0.1/invoicerow/{id}/
+    - GET    /api/0.1/invoicepayment/
+    - POST   /api/0.1/invoicepayment/
+    - POST   /api/0.1/invoicepayment/{id}/cancel_payment/
+    - GET    /api/0.1/unallocatedpayment/
+    - POST   /api/0.1/unallocatedpayment/
+    - GET    /api/0.1/item/
+    - GET    /api/0.1/department/{id}/
+    - GET    /api/0.1/reason/{id}/
+    - GET    /api/0.1/user/{id}/
+    - GET    /api/0.1/custom_fields/
+    - GET    /api/0.1/codelist/species/
+    - GET    /api/0.1/codelist/breeds/
+    - GET    /api/0.1/codelist/diagnoses/
+  endpointsModeled:
+    - GET    /api/0.1/webhook/
+    - POST   /api/0.1/webhook/
+  endpointsModeledNote: >-
+    Provet Cloud documents that webhooks can be created in Settings and that
+    automating webhook creation via the API is recommended, but the how-to pages
+    do not print the exact webhook-management path or body. The /webhook/
+    resource path and its request/response schema in the OpenAPI are modeled from
+    that documented behavior and should be confirmed against a live installation.
+sources:
+  - url: https://developers.provetcloud.com/restapi/
+    type: Documentation
+    note: API overview, JSON, version 0.1, browsable, freely accessible to customers/developers.
+  - url: https://developers.provetcloud.com/restapi/authentication_oauth2.html
+    type: Documentation
+    note: OAuth 2.0 Client Credentials and Authorization Code + PKCE; token endpoint; scopes restapi/openid.
+  - url: https://developers.provetcloud.com/restapi/authentication_token.html
+    type: Documentation
+    note: Legacy API token auth (deprecated); base URL https://provetcloud.com/<provet_id>/api/0.1/.
+  - url: https://developers.provetcloud.com/restapi/ratelimit.html
+    type: Documentation
+    note: Per-endpoint limits, rolling 60s window, HTTP 429 + Retry-After, page-size proportional cost.
+  - url: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+    type: APIReference
+    note: Confirmed /client/, /patient/, /patient/bulk/, /phonenumber/, custom_field_values, codelists.
+  - url: https://developers.provetcloud.com/restapi/howto_consultations.html
+    type: APIReference
+    note: Confirmed /consultation/ and its lifecycle actions and clinical sub-resources.
+  - url: https://developers.provetcloud.com/restapi/howto_appointments.html
+    type: APIReference
+    note: Confirmed /appointment/, online booking, reminders, department/reason/user reference lookups.
+  - url: https://developers.provetcloud.com/restapi/howto_billing.html
+    type: APIReference
+    note: Confirmed /invoice/, /invoicerow/, /invoicepayment/, /unallocatedpayment/ and refund actions.
+  - url: https://developers.provetcloud.com/restapi/webhooks.html
+    type: Documentation
+    note: Outbound HTTP POST webhooks, department/org scope, retried up to 10 times. No WebSocket.
+  - url: https://developers.provetcloud.com/restapi/webhook_triggers.html
+    type: Documentation
+    note: 60+ webhook trigger events across clients, patients, consultations, appointments, invoices, stock, imaging, labs.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists on Provet Cloud's own API. The public
+    API is request/response REST (OAuth 2.0), and its asynchronous behavior is
+    delivered through outbound HTTP webhooks rather than a client-connected
+    WebSocket/SSE stream. No AsyncAPI document was created because there is no
+    server-push socket transport to model; the webhook callbacks are ordinary
+    HTTP POSTs already described in the REST documentation.

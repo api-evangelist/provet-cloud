@@ -1,0 +1,196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Provet Cloud REST API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{accessToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Clients", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List clients", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/client/" },
+          "docs": "Fetch clients with optional filters (firstname, lastname, email, archived)."
+        },
+        {
+          "info": { "name": "Create a client", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/client/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Create a new client (animal owner / bill payer)."
+        },
+        {
+          "info": { "name": "Update a client", "type": "http" },
+          "http": { "method": "PATCH", "url": "https://provetcloud.com/{provet_id}/api/0.1/client/:id/", "params": [ { "name": "id", "value": "", "type": "path", "description": "Client ID." } ], "body": { "type": "json", "data": "{}" } },
+          "docs": "Patch client fields such as email or communication preferences."
+        },
+        {
+          "info": { "name": "List phone numbers", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/phonenumber/" },
+          "docs": "List phone numbers associated with a client."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Patients", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List patients", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/patient/" },
+          "docs": "Fetch patients (animals) with filters (client, microchip, species, modified)."
+        },
+        {
+          "info": { "name": "Create a patient", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/patient/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Create a single patient linked to a client."
+        },
+        {
+          "info": { "name": "Bulk create patients", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/patient/bulk/", "body": { "type": "json", "data": "[]" } },
+          "docs": "Create multiple patients in one request, with partial success support."
+        },
+        {
+          "info": { "name": "Update a patient", "type": "http" },
+          "http": { "method": "PATCH", "url": "https://provetcloud.com/{provet_id}/api/0.1/patient/:id/", "params": [ { "name": "id", "value": "", "type": "path", "description": "Patient ID." } ], "body": { "type": "json", "data": "{}" } },
+          "docs": "Patch patient details (microchip, weight, deceased status)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Appointments", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Create an appointment", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/appointment/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Create an appointment against a department, reason, and supervising user."
+        },
+        {
+          "info": { "name": "Send appointment confirmation", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/appointment/:id/send_appointment_confirmation/", "params": [ { "name": "id", "value": "", "type": "path", "description": "Appointment ID." } ] },
+          "docs": "Send a confirmation email/SMS for an appointment."
+        },
+        {
+          "info": { "name": "Create online booking client", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/onlinebookingclient/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Register a client in a self-service online booking flow."
+        },
+        {
+          "info": { "name": "Create online booking patient", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/onlinebookingpatient/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Register a patient in a self-service online booking flow."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Consultations", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List consultations", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/" },
+          "docs": "Retrieve and filter existing consultations."
+        },
+        {
+          "info": { "name": "Create a consultation", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Create a new consultation (clinical visit)."
+        },
+        {
+          "info": { "name": "Get a consultation", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/", "params": [ { "name": "id", "value": "", "type": "path", "description": "Consultation ID." } ] },
+          "docs": "Fetch a specific consultation."
+        },
+        {
+          "info": { "name": "Update consultation status", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/update_status/", "params": [ { "name": "id", "value": "", "type": "path", "description": "Consultation ID." } ], "body": { "type": "json", "data": "{}" } },
+          "docs": "Advance a consultation through its lifecycle states."
+        },
+        {
+          "info": { "name": "Add a medicine to a consultation", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/medicines/", "params": [ { "name": "id", "value": "", "type": "path", "description": "Consultation ID." } ], "body": { "type": "json", "data": "{}" } },
+          "docs": "Add a medication to a consultation."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Billing", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List invoices", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/invoice/" },
+          "docs": "Retrieve invoices with filtering options."
+        },
+        {
+          "info": { "name": "Full refund an invoice", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/invoice/:id/full_refund/", "params": [ { "name": "id", "value": "", "type": "path", "description": "Invoice ID." } ] },
+          "docs": "Generate a complete credit note for an invoice."
+        },
+        {
+          "info": { "name": "List invoice rows", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/invoicerow/" },
+          "docs": "Fetch line items for invoices."
+        },
+        {
+          "info": { "name": "Record an invoice payment", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/invoicepayment/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Record a payment against a finalized invoice (status 3)."
+        },
+        {
+          "info": { "name": "Record an unallocated payment", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/unallocatedpayment/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Record funds received before invoice creation (a prepayment)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Reference Data", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List items", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/item/" },
+          "docs": "Retrieve the master catalog for medicines, procedures, supplies, and food."
+        },
+        {
+          "info": { "name": "Get a department", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/department/:id/", "params": [ { "name": "id", "value": "", "type": "path", "description": "Department ID." } ] },
+          "docs": "Retrieve a department."
+        },
+        {
+          "info": { "name": "List species codes", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/codelist/species/" },
+          "docs": "Retrieve valid species codes for patient creation."
+        },
+        {
+          "info": { "name": "List breed codes", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/codelist/breeds/" },
+          "docs": "Retrieve valid breed codes for patient records."
+        },
+        {
+          "info": { "name": "List diagnosis codes", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/codelist/diagnoses/" },
+          "docs": "Retrieve available diagnostic codes."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Webhooks", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List webhooks (modeled)", "type": "http" },
+          "http": { "method": "GET", "url": "https://provetcloud.com/{provet_id}/api/0.1/webhook/" },
+          "docs": "Modeled webhook-management endpoint. Confirm the exact path against a live installation."
+        },
+        {
+          "info": { "name": "Create a webhook (modeled)", "type": "http" },
+          "http": { "method": "POST", "url": "https://provetcloud.com/{provet_id}/api/0.1/webhook/", "body": { "type": "json", "data": "{}" } },
+          "docs": "Modeled: subscribe to a trigger. Provet Cloud POSTs the changed object's ID to the target URL and retries up to 10 times."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,333 @@
+{
+  "info": {
+    "name": "Provet Cloud REST API",
+    "description": "Programmatic access to a Provet Cloud veterinary practice management (PIMS) installation by Nordhealth. Base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1 (regional domains such as us.provetcloud.com also exist). Authorize with OAuth 2.0 (Client Credentials for backend services, or Authorization Code + PKCE for user apps) using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and scope 'restapi'. Set the {{baseUrl}} and {{accessToken}} variables. Confirmed endpoints are grounded in developers.provetcloud.com; the Webhooks requests are modeled from documented webhook-management behavior.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{accessToken}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://provetcloud.com/0/api/0.1", "type": "string" },
+    { "key": "accessToken", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Clients",
+      "item": [
+        {
+          "name": "List clients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/client/", "host": ["{{baseUrl}}"], "path": ["client", ""] },
+            "description": "Fetch clients with optional filters (firstname, lastname, email, archived)."
+          }
+        },
+        {
+          "name": "Create a client",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"firstname\": \"\",\n  \"lastname\": \"\",\n  \"email\": \"\",\n  \"country\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/client/", "host": ["{{baseUrl}}"], "path": ["client", ""] },
+            "description": "Create a new client (animal owner / bill payer)."
+          }
+        },
+        {
+          "name": "Update a client",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/client/:id/", "host": ["{{baseUrl}}"], "path": ["client", ":id", ""], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Patch client fields such as email or communication preferences."
+          }
+        },
+        {
+          "name": "List client custom field values",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/client/:id/custom_field_values/", "host": ["{{baseUrl}}"], "path": ["client", ":id", "custom_field_values", ""], "variable": [{ "key": "id", "value": "" }] }
+          }
+        },
+        {
+          "name": "List phone numbers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/phonenumber/", "host": ["{{baseUrl}}"], "path": ["phonenumber", ""] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Patients",
+      "item": [
+        {
+          "name": "List patients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/patient/", "host": ["{{baseUrl}}"], "path": ["patient", ""] },
+            "description": "Fetch patients (animals) with filters (client, microchip, species, modified)."
+          }
+        },
+        {
+          "name": "Create a patient",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"client\": 0,\n  \"name\": \"\",\n  \"species\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/patient/", "host": ["{{baseUrl}}"], "path": ["patient", ""] }
+          }
+        },
+        {
+          "name": "Bulk create patients",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "[\n  { \"client\": 0, \"name\": \"\", \"species\": 0 }\n]" },
+            "url": { "raw": "{{baseUrl}}/patient/bulk/", "host": ["{{baseUrl}}"], "path": ["patient", "bulk", ""] },
+            "description": "Create multiple patients in one request, with partial success support."
+          }
+        },
+        {
+          "name": "Update a patient",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"weight\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/patient/:id/", "host": ["{{baseUrl}}"], "path": ["patient", ":id", ""], "variable": [{ "key": "id", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Appointments",
+      "item": [
+        {
+          "name": "Create an appointment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"client\": 0,\n  \"patient\": 0,\n  \"department\": 0,\n  \"reason\": 0,\n  \"start_time\": \"\",\n  \"end_time\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/appointment/", "host": ["{{baseUrl}}"], "path": ["appointment", ""] }
+          }
+        },
+        {
+          "name": "Send appointment confirmation",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/appointment/:id/send_appointment_confirmation/", "host": ["{{baseUrl}}"], "path": ["appointment", ":id", "send_appointment_confirmation", ""], "variable": [{ "key": "id", "value": "" }] }
+          }
+        },
+        {
+          "name": "Create online booking client",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/onlinebookingclient/", "host": ["{{baseUrl}}"], "path": ["onlinebookingclient", ""] }
+          }
+        },
+        {
+          "name": "Create online booking patient",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/onlinebookingpatient/", "host": ["{{baseUrl}}"], "path": ["onlinebookingpatient", ""] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consultations",
+      "item": [
+        {
+          "name": "List consultations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/consultation/", "host": ["{{baseUrl}}"], "path": ["consultation", ""] }
+          }
+        },
+        {
+          "name": "Create a consultation",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"client\": 0,\n  \"patients\": [0],\n  \"department\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/consultation/", "host": ["{{baseUrl}}"], "path": ["consultation", ""] }
+          }
+        },
+        {
+          "name": "Get a consultation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/consultation/:id/", "host": ["{{baseUrl}}"], "path": ["consultation", ":id", ""], "variable": [{ "key": "id", "value": "" }] }
+          }
+        },
+        {
+          "name": "Update consultation status",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/consultation/:id/update_status/", "host": ["{{baseUrl}}"], "path": ["consultation", ":id", "update_status", ""], "variable": [{ "key": "id", "value": "" }] }
+          }
+        },
+        {
+          "name": "Add a medicine to a consultation",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/consultation/:id/medicines/", "host": ["{{baseUrl}}"], "path": ["consultation", ":id", "medicines", ""], "variable": [{ "key": "id", "value": "" }] }
+          }
+        },
+        {
+          "name": "Add a diagnosis to a consultation",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/consultation/:id/consultationdiagnosis/", "host": ["{{baseUrl}}"], "path": ["consultation", ":id", "consultationdiagnosis", ""], "variable": [{ "key": "id", "value": "" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Billing",
+      "item": [
+        {
+          "name": "List invoices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/invoice/", "host": ["{{baseUrl}}"], "path": ["invoice", ""] }
+          }
+        },
+        {
+          "name": "Full refund an invoice",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/invoice/:id/full_refund/", "host": ["{{baseUrl}}"], "path": ["invoice", ":id", "full_refund", ""], "variable": [{ "key": "id", "value": "" }] }
+          }
+        },
+        {
+          "name": "List invoice rows",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/invoicerow/", "host": ["{{baseUrl}}"], "path": ["invoicerow", ""] }
+          }
+        },
+        {
+          "name": "Record an invoice payment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"invoice\": 0,\n  \"amount\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/invoicepayment/", "host": ["{{baseUrl}}"], "path": ["invoicepayment", ""] },
+            "description": "Record a payment against a finalized invoice (status 3)."
+          }
+        },
+        {
+          "name": "Cancel an invoice payment",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/invoicepayment/:id/cancel_payment/", "host": ["{{baseUrl}}"], "path": ["invoicepayment", ":id", "cancel_payment", ""], "variable": [{ "key": "id", "value": "" }] }
+          }
+        },
+        {
+          "name": "Record an unallocated payment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"client\": 0,\n  \"amount\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/unallocatedpayment/", "host": ["{{baseUrl}}"], "path": ["unallocatedpayment", ""] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reference Data",
+      "item": [
+        {
+          "name": "List items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/item/", "host": ["{{baseUrl}}"], "path": ["item", ""] }
+          }
+        },
+        {
+          "name": "Get a department",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/department/:id/", "host": ["{{baseUrl}}"], "path": ["department", ":id", ""], "variable": [{ "key": "id", "value": "" }] }
+          }
+        },
+        {
+          "name": "List species codes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/codelist/species/", "host": ["{{baseUrl}}"], "path": ["codelist", "species", ""] }
+          }
+        },
+        {
+          "name": "List breed codes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/codelist/breeds/", "host": ["{{baseUrl}}"], "path": ["codelist", "breeds", ""] }
+          }
+        },
+        {
+          "name": "List diagnosis codes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/codelist/diagnoses/", "host": ["{{baseUrl}}"], "path": ["codelist", "diagnoses", ""] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "List webhooks (modeled)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/webhook/", "host": ["{{baseUrl}}"], "path": ["webhook", ""] },
+            "description": "Modeled webhook-management endpoint. Confirm the exact path against a live installation."
+          }
+        },
+        {
+          "name": "Create a webhook (modeled)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"\",\n  \"trigger\": \"\",\n  \"url\": \"\",\n  \"active\": true\n}" },
+            "url": { "raw": "{{baseUrl}}/webhook/", "host": ["{{baseUrl}}"], "path": ["webhook", ""] },
+            "description": "Modeled: subscribe to a trigger. Provet Cloud POSTs the changed object's ID to the target URL and retries up to 10 times."
+          }
+        }
+      ]
+    }
+  ]
+}

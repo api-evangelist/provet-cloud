@@ -1,0 +1,77 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Provet Cloud
+providerId: provet-cloud
+created: '2026-07-03'
+modified: '2026-07-03'
+reconciled: false
+tags:
+- Veterinary
+- Practice Management
+- PIMS
+- Nordhealth
+- Rate Limiting
+- Quotas
+description: >-
+  Provet Cloud enforces rate limits on a per-endpoint basis to protect server
+  resources. Each endpoint has its own documented limit, and the limits are
+  additive across endpoints - an integration using an endpoint capped at 100
+  req/min and another capped at 200 req/min can make up to 300 req/min combined.
+  Requests are counted over a rolling 60-second window. Requesting a larger
+  custom page size on paginated endpoints consumes requests proportional to the
+  default page size (e.g. asking for 500 results where the default page is 50
+  counts as 10 requests). The per-endpoint numeric limits are published in the
+  Provet REST API Schema rather than as a single global figure.
+notes: >-
+  When a limit is exceeded the API returns HTTP 429 Too Many Requests with a
+  Retry-After header giving a recommended wait in seconds. Consult the per-
+  endpoint limits in the API Schema; the exact numeric values vary by endpoint
+  and are not reproduced here.
+sources:
+- https://developers.provetcloud.com/restapi/ratelimit.html
+- https://developers.provetcloud.com/restapi/pagination.html
+- https://developers.provetcloud.com/restapi/
+responseCodes:
+  throttled: 429
+limits:
+- name: Per-Endpoint Request Rate
+  scope: endpoint
+  metric: requests
+  limit: per-endpoint (documented in the API Schema)
+  window: rolling 60 seconds
+  notes: >-
+    Each endpoint has its own request-rate cap. Limits are additive across
+    endpoints for a single REST API user.
+- name: Combined Request Rate
+  scope: user
+  metric: requests
+  limit: sum of the used endpoints' individual limits
+  window: rolling 60 seconds
+  notes: >-
+    Total allowed throughput is the sum of the per-endpoint limits of the
+    endpoints an integration actually calls.
+- name: Page Size Cost
+  scope: endpoint
+  metric: requests
+  limit: proportional to default page size
+  notes: >-
+    A custom page size larger than the default consumes requests in proportion
+    to the default page size (500 results at a 50 default = 10 requests).
+policies:
+- name: Retry-After
+  description: >-
+    429 responses include a Retry-After header with the recommended number of
+    seconds to wait before retrying.
+- name: Backoff Strategy
+  description: >-
+    Clients should honor Retry-After and implement exponential backoff with
+    jitter, and prefer smaller page sizes and targeted filters to stay within
+    per-endpoint limits.
+- name: Webhooks Over Polling
+  description: >-
+    Provet Cloud webhooks (60+ triggers) let integrations react to changes
+    instead of polling, reducing pressure against per-endpoint rate limits.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
