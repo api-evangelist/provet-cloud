@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/provet-cloud-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/provet-cloud-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://provetcloud.com/0/oauth2/token/
+  - flow: authorizationCode
+    authorizationUrl: https://provetcloud.com/0/oauth2/authorize/
+    tokenUrl: https://provetcloud.com/0/oauth2/token/
+  description: OAuth 2.0. Client Credentials for backend services; Authorization Code with PKCE
+    for user-facing apps. Token endpoint is https://provetcloud.com/<provet_id>/oauth2/token/
+    with scope "restapi".
+scopes:
+- scope: openid
+  description: Obtain additional user details.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/provet-cloud-openapi.yml
+- scope: restapi
+  description: Access the Provet Cloud REST API.
+  flows:
+  - authorizationCode
+  - clientCredentials
+  sources:
+  - openapi/provet-cloud-openapi.yml

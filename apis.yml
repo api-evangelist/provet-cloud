@@ -189,6 +189,10 @@ apis:
     department and are retried up to 10 times. Webhook subscriptions can be managed via
     the API.
 common:
+- type: Authentication
+  url: authentication/provet-cloud-authentication.yml
+- type: OAuthScopes
+  url: scopes/provet-cloud-scopes.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/provetcloud
 - type: Website
@@ -201,6 +205,8 @@ common:
   url: rate-limits/provet-cloud-rate-limits.yml
 - type: FinOps
   url: finops/provet-cloud-finops.yml
+- url: https://www.provet.com/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
