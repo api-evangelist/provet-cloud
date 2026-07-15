@@ -189,6 +189,8 @@ apis:
     department and are retried up to 10 times. Webhook subscriptions can be managed via
     the API.
 common:
+- type: AgenticAccess
+  url: agentic-access/provet-cloud-agentic-access.yml
 - type: DomainSecurity
   url: security/provet-cloud-domain-security.yml
 - type: Authentication
