@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: Provet Cloud REST Appointments Webhooks API
+  description: 'The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth. The API is browsable, returns JSON, and is versioned at 0.1. The base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized with OAuth 2.0 - Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps - using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and the "restapi" scope. A legacy "Authorization: Token <key>" header exists but is deprecated. Integrations must be registered and approved by Provet''s support team per installation, so exact request/response schemas are seen against a live instance; the paths below are grounded in the public documentation, and request/response bodies are modeled where the public how-to pages do not print a full schema.'
+  version: '0.1'
+  contact:
+    name: Provet Cloud (Nordhealth)
+    url: https://developers.provetcloud.com/restapi/
+servers:
+- url: https://provetcloud.com/{provet_id}/api/0.1
+  description: Provet Cloud installation (EU / default region)
+  variables:
+    provet_id:
+      default: '0'
+      description: Your installation's unique Provet Cloud ID.
+- url: https://us.provetcloud.com/{provet_id}/api/0.1
+  description: Provet Cloud installation (US region)
+  variables:
+    provet_id:
+      default: '0'
+      description: Your installation's unique Provet Cloud ID.
+security:
+- oauth2: []
+tags:
+- name: Webhooks
+  description: Event subscriptions.
+paths:
+  /webhook/:
+    get:
+      operationId: listWebhooks
+      tags:
+      - Webhooks
+      summary: List webhooks
+      description: List webhook subscriptions. Webhooks can also be managed in Settings > General > Integrations > Webhooks; automating creation via the API is recommended. Path modeled from the documented webhook-management behavior.
+      responses:
+        '200':
+          description: A list of webhook subscriptions.
+    post:
+      operationId: createWebhook
+      tags:
+      - Webhooks
+      summary: Create a webhook
+      description: Create a webhook subscription for a trigger, scoped organization-wide or to a department. Provet Cloud POSTs the changed object's ID to the target URL and retries up to 10 times on non-200 responses.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '201':
+          description: The created webhook subscription.
+components:
+  schemas:
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+        trigger:
+          type: string
+          description: One of the 60+ documented webhook triggers.
+        url:
+          type: string
+          format: uri
+        department:
+          type: integer
+          nullable: true
+          description: If empty, the webhook is organization-wide.
+        active:
+          type: boolean
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0. Client Credentials for backend services; Authorization Code with PKCE for user-facing apps. Token endpoint is https://provetcloud.com/<provet_id>/oauth2/token/ with scope "restapi".
+      flows:
+        clientCredentials:
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+        authorizationCode:
+          authorizationUrl: https://provetcloud.com/0/oauth2/authorize/
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+            openid: Obtain additional user details.

@@ -1,0 +1,192 @@
+openapi: 3.0.3
+info:
+  title: Provet Cloud REST Appointments Billing API
+  description: 'The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth. The API is browsable, returns JSON, and is versioned at 0.1. The base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized with OAuth 2.0 - Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps - using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and the "restapi" scope. A legacy "Authorization: Token <key>" header exists but is deprecated. Integrations must be registered and approved by Provet''s support team per installation, so exact request/response schemas are seen against a live instance; the paths below are grounded in the public documentation, and request/response bodies are modeled where the public how-to pages do not print a full schema.'
+  version: '0.1'
+  contact:
+    name: Provet Cloud (Nordhealth)
+    url: https://developers.provetcloud.com/restapi/
+servers:
+- url: https://provetcloud.com/{provet_id}/api/0.1
+  description: Provet Cloud installation (EU / default region)
+  variables:
+    provet_id:
+      default: '0'
+      description: Your installation's unique Provet Cloud ID.
+- url: https://us.provetcloud.com/{provet_id}/api/0.1
+  description: Provet Cloud installation (US region)
+  variables:
+    provet_id:
+      default: '0'
+      description: Your installation's unique Provet Cloud ID.
+security:
+- oauth2: []
+tags:
+- name: Billing
+  description: Invoices, refunds, and payments.
+paths:
+  /invoice/:
+    get:
+      operationId: listInvoices
+      tags:
+      - Billing
+      summary: List invoices
+      description: Retrieve invoices with filtering options.
+      responses:
+        '200':
+          description: A paginated list of invoices.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceList'
+  /invoice/{id}/full_refund/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    post:
+      operationId: fullRefundInvoice
+      tags:
+      - Billing
+      summary: Full refund (credit note)
+      description: Generate a complete credit note for an invoice.
+      responses:
+        '200':
+          description: The credit note.
+  /invoice/{id}/partial_refund/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    post:
+      operationId: partialRefundInvoice
+      tags:
+      - Billing
+      summary: Partial refund (credit note)
+      description: Generate a partial credit note for selected invoice rows.
+      responses:
+        '200':
+          description: The partial credit note.
+  /invoicerow/:
+    get:
+      operationId: listInvoiceRows
+      tags:
+      - Billing
+      summary: List invoice rows
+      description: Fetch line items for invoices.
+      responses:
+        '200':
+          description: A list of invoice rows.
+  /invoicerow/{id}/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      operationId: getInvoiceRow
+      tags:
+      - Billing
+      summary: Get an invoice row
+      description: Retrieve an invoice row, optionally exposing related fields.
+      responses:
+        '200':
+          description: The invoice row.
+  /invoicepayment/:
+    get:
+      operationId: listInvoicePayments
+      tags:
+      - Billing
+      summary: List invoice payments
+      responses:
+        '200':
+          description: A list of payments.
+    post:
+      operationId: createInvoicePayment
+      tags:
+      - Billing
+      summary: Record an invoice payment
+      description: Record a payment against a finalized invoice (status 3). Payments can only be recorded against finalized invoices.
+      responses:
+        '201':
+          description: The recorded payment.
+  /invoicepayment/{id}/cancel_payment/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    post:
+      operationId: cancelInvoicePayment
+      tags:
+      - Billing
+      summary: Cancel an invoice payment
+      description: Reverse an incorrectly recorded payment.
+      responses:
+        '200':
+          description: The cancelled payment.
+  /unallocatedpayment/:
+    get:
+      operationId: listUnallocatedPayments
+      tags:
+      - Billing
+      summary: List unallocated payments
+      description: Retrieve prepayment records and available balances.
+      responses:
+        '200':
+          description: A list of unallocated payments.
+    post:
+      operationId: createUnallocatedPayment
+      tags:
+      - Billing
+      summary: Record an unallocated payment
+      description: Record funds received before invoice creation (a prepayment).
+      responses:
+        '201':
+          description: The recorded prepayment.
+components:
+  schemas:
+    InvoiceList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              status:
+                type: integer
+                description: 3 = Finalized (required before recording payments).
+              total:
+                type: number
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0. Client Credentials for backend services; Authorization Code with PKCE for user-facing apps. Token endpoint is https://provetcloud.com/<provet_id>/oauth2/token/ with scope "restapi".
+      flows:
+        clientCredentials:
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+        authorizationCode:
+          authorizationUrl: https://provetcloud.com/0/oauth2/authorize/
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+            openid: Obtain additional user details.

@@ -1,0 +1,219 @@
+openapi: 3.0.3
+info:
+  title: Provet Cloud REST Appointments Clients API
+  description: 'The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth. The API is browsable, returns JSON, and is versioned at 0.1. The base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized with OAuth 2.0 - Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps - using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and the "restapi" scope. A legacy "Authorization: Token <key>" header exists but is deprecated. Integrations must be registered and approved by Provet''s support team per installation, so exact request/response schemas are seen against a live instance; the paths below are grounded in the public documentation, and request/response bodies are modeled where the public how-to pages do not print a full schema.'
+  version: '0.1'
+  contact:
+    name: Provet Cloud (Nordhealth)
+    url: https://developers.provetcloud.com/restapi/
+servers:
+- url: https://provetcloud.com/{provet_id}/api/0.1
+  description: Provet Cloud installation (EU / default region)
+  variables:
+    provet_id:
+      default: '0'
+      description: Your installation's unique Provet Cloud ID.
+- url: https://us.provetcloud.com/{provet_id}/api/0.1
+  description: Provet Cloud installation (US region)
+  variables:
+    provet_id:
+      default: '0'
+      description: Your installation's unique Provet Cloud ID.
+security:
+- oauth2: []
+tags:
+- name: Clients
+  description: Animal owners / bill payers.
+paths:
+  /client/:
+    get:
+      operationId: listClients
+      tags:
+      - Clients
+      summary: List clients
+      description: Fetch clients with optional filters such as firstname, lastname, organization name, email, phone number, and archived status. Confirmed in the Clients & Patients how-to.
+      parameters:
+      - name: firstname
+        in: query
+        schema:
+          type: string
+      - name: lastname
+        in: query
+        schema:
+          type: string
+      - name: email
+        in: query
+        schema:
+          type: string
+      - name: archived
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: A paginated list of clients.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    post:
+      operationId: createClient
+      tags:
+      - Clients
+      summary: Create a client
+      description: Create a new client record (name, email, country, customer type).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '201':
+          description: The created client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /client/{id}/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    patch:
+      operationId: updateClient
+      tags:
+      - Clients
+      summary: Update a client
+      description: Patch specific client fields such as email or communication preferences.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Client'
+      responses:
+        '200':
+          description: The updated client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /client/{id}/custom_field_values/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      operationId: getClientCustomFieldValues
+      tags:
+      - Clients
+      summary: Get client custom field values
+      responses:
+        '200':
+          description: Custom field values for the client.
+    post:
+      operationId: setClientCustomFieldValues
+      tags:
+      - Clients
+      summary: Set client custom field values
+      responses:
+        '200':
+          description: Updated custom field values.
+  /phonenumber/:
+    get:
+      operationId: listPhoneNumbers
+      tags:
+      - Clients
+      summary: List phone numbers
+      description: List phone numbers associated with a client.
+      responses:
+        '200':
+          description: A list of phone numbers.
+    post:
+      operationId: createPhoneNumber
+      tags:
+      - Clients
+      summary: Add a phone number
+      description: Add a phone number to a client record.
+      responses:
+        '201':
+          description: The created phone number.
+components:
+  schemas:
+    ClientList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Client'
+    Client:
+      type: object
+      description: An animal owner / bill payer.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        firstname:
+          type: string
+        lastname:
+          type: string
+        organization_name:
+          type: string
+        email:
+          type: string
+          format: email
+        country:
+          type: string
+        customer_type:
+          type: integer
+        archived:
+          type: boolean
+  responses:
+    RateLimited:
+      description: Too Many Requests. Rate limits are per-endpoint over a rolling 60-second window; a Retry-After header indicates how long to wait.
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying.
+    Unauthorized:
+      description: Missing or invalid OAuth 2.0 access token.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0. Client Credentials for backend services; Authorization Code with PKCE for user-facing apps. Token endpoint is https://provetcloud.com/<provet_id>/oauth2/token/ with scope "restapi".
+      flows:
+        clientCredentials:
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+        authorizationCode:
+          authorizationUrl: https://provetcloud.com/0/oauth2/authorize/
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+            openid: Obtain additional user details.

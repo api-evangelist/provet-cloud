@@ -1,0 +1,131 @@
+openapi: 3.0.3
+info:
+  title: Provet Cloud REST Appointments API
+  description: 'The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth. The API is browsable, returns JSON, and is versioned at 0.1. The base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized with OAuth 2.0 - Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps - using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and the "restapi" scope. A legacy "Authorization: Token <key>" header exists but is deprecated. Integrations must be registered and approved by Provet''s support team per installation, so exact request/response schemas are seen against a live instance; the paths below are grounded in the public documentation, and request/response bodies are modeled where the public how-to pages do not print a full schema.'
+  version: '0.1'
+  contact:
+    name: Provet Cloud (Nordhealth)
+    url: https://developers.provetcloud.com/restapi/
+servers:
+- url: https://provetcloud.com/{provet_id}/api/0.1
+  description: Provet Cloud installation (EU / default region)
+  variables:
+    provet_id:
+      default: '0'
+      description: Your installation's unique Provet Cloud ID.
+- url: https://us.provetcloud.com/{provet_id}/api/0.1
+  description: Provet Cloud installation (US region)
+  variables:
+    provet_id:
+      default: '0'
+      description: Your installation's unique Provet Cloud ID.
+security:
+- oauth2: []
+tags:
+- name: Appointments
+  description: Appointments and online booking.
+paths:
+  /appointment/:
+    post:
+      operationId: createAppointment
+      tags:
+      - Appointments
+      summary: Create an appointment
+      description: Create an appointment against a department, reason, and supervising user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+      responses:
+        '201':
+          description: The created appointment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+  /appointment/{id}/send_appointment_confirmation/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    post:
+      operationId: sendAppointmentConfirmation
+      tags:
+      - Appointments
+      summary: Send appointment confirmation
+      description: Send a confirmation email/SMS for an appointment.
+      responses:
+        '200':
+          description: Confirmation queued.
+  /appointment_reminder/:
+    post:
+      operationId: createAppointmentReminder
+      tags:
+      - Appointments
+      summary: Create an appointment reminder
+      responses:
+        '201':
+          description: The created reminder.
+  /onlinebookingclient/:
+    post:
+      operationId: createOnlineBookingClient
+      tags:
+      - Appointments
+      summary: Create an online booking client
+      description: Register a client as part of a self-service online booking flow.
+      responses:
+        '201':
+          description: The created online booking client.
+  /onlinebookingpatient/:
+    post:
+      operationId: createOnlineBookingPatient
+      tags:
+      - Appointments
+      summary: Create an online booking patient
+      description: Register a patient as part of a self-service online booking flow.
+      responses:
+        '201':
+          description: The created online booking patient.
+components:
+  schemas:
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        client:
+          type: integer
+        patient:
+          type: integer
+        department:
+          type: integer
+        reason:
+          type: integer
+        supervising_user:
+          type: integer
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0. Client Credentials for backend services; Authorization Code with PKCE for user-facing apps. Token endpoint is https://provetcloud.com/<provet_id>/oauth2/token/ with scope "restapi".
+      flows:
+        clientCredentials:
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+        authorizationCode:
+          authorizationUrl: https://provetcloud.com/0/oauth2/authorize/
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+            openid: Obtain additional user details.

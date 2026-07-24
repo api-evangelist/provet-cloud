@@ -1,0 +1,212 @@
+openapi: 3.0.3
+info:
+  title: Provet Cloud REST Appointments Patients API
+  description: 'The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth. The API is browsable, returns JSON, and is versioned at 0.1. The base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized with OAuth 2.0 - Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps - using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and the "restapi" scope. A legacy "Authorization: Token <key>" header exists but is deprecated. Integrations must be registered and approved by Provet''s support team per installation, so exact request/response schemas are seen against a live instance; the paths below are grounded in the public documentation, and request/response bodies are modeled where the public how-to pages do not print a full schema.'
+  version: '0.1'
+  contact:
+    name: Provet Cloud (Nordhealth)
+    url: https://developers.provetcloud.com/restapi/
+servers:
+- url: https://provetcloud.com/{provet_id}/api/0.1
+  description: Provet Cloud installation (EU / default region)
+  variables:
+    provet_id:
+      default: '0'
+      description: Your installation's unique Provet Cloud ID.
+- url: https://us.provetcloud.com/{provet_id}/api/0.1
+  description: Provet Cloud installation (US region)
+  variables:
+    provet_id:
+      default: '0'
+      description: Your installation's unique Provet Cloud ID.
+security:
+- oauth2: []
+tags:
+- name: Patients
+  description: The animals under care.
+paths:
+  /patient/:
+    get:
+      operationId: listPatients
+      tags:
+      - Patients
+      summary: List patients
+      description: Fetch patients (animals) with filters such as client ID, name, microchip, species, and modification date.
+      parameters:
+      - name: client
+        in: query
+        schema:
+          type: integer
+      - name: microchip
+        in: query
+        schema:
+          type: string
+      - name: species
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated list of patients.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PatientList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+    post:
+      operationId: createPatient
+      tags:
+      - Patients
+      summary: Create a patient
+      description: Create a single patient record linked to a client.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '201':
+          description: The created patient.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+  /patient/bulk/:
+    post:
+      operationId: bulkCreatePatients
+      tags:
+      - Patients
+      summary: Bulk create patients
+      description: Create multiple patients in a single request, with partial success support.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Patient'
+      responses:
+        '200':
+          description: Per-record creation results.
+  /patient/{id}/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    patch:
+      operationId: updatePatient
+      tags:
+      - Patients
+      summary: Update a patient
+      description: Patch patient details such as microchip, weight, or deceased status.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patient'
+      responses:
+        '200':
+          description: The updated patient.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Patient'
+  /patient/{id}/custom_field_values/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      operationId: getPatientCustomFieldValues
+      tags:
+      - Patients
+      summary: Get patient custom field values
+      responses:
+        '200':
+          description: Custom field values for the patient.
+    post:
+      operationId: setPatientCustomFieldValues
+      tags:
+      - Patients
+      summary: Set patient custom field values
+      responses:
+        '200':
+          description: Updated custom field values.
+components:
+  schemas:
+    PatientList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Patient'
+    Patient:
+      type: object
+      description: An animal under care, linked to a client.
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        client:
+          type: integer
+        name:
+          type: string
+        species:
+          type: integer
+        breed:
+          type: integer
+        gender:
+          type: string
+        microchip:
+          type: string
+        weight:
+          type: number
+        deceased:
+          type: boolean
+        date_of_registration:
+          type: string
+          format: date
+  responses:
+    RateLimited:
+      description: Too Many Requests. Rate limits are per-endpoint over a rolling 60-second window; a Retry-After header indicates how long to wait.
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying.
+    Unauthorized:
+      description: Missing or invalid OAuth 2.0 access token.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0. Client Credentials for backend services; Authorization Code with PKCE for user-facing apps. Token endpoint is https://provetcloud.com/<provet_id>/oauth2/token/ with scope "restapi".
+      flows:
+        clientCredentials:
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+        authorizationCode:
+          authorizationUrl: https://provetcloud.com/0/oauth2/authorize/
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+            openid: Obtain additional user details.

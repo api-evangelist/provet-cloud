@@ -1,0 +1,313 @@
+openapi: 3.0.3
+info:
+  title: Provet Cloud REST Appointments Consultations API
+  description: 'The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth. The API is browsable, returns JSON, and is versioned at 0.1. The base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized with OAuth 2.0 - Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps - using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and the "restapi" scope. A legacy "Authorization: Token <key>" header exists but is deprecated. Integrations must be registered and approved by Provet''s support team per installation, so exact request/response schemas are seen against a live instance; the paths below are grounded in the public documentation, and request/response bodies are modeled where the public how-to pages do not print a full schema.'
+  version: '0.1'
+  contact:
+    name: Provet Cloud (Nordhealth)
+    url: https://developers.provetcloud.com/restapi/
+servers:
+- url: https://provetcloud.com/{provet_id}/api/0.1
+  description: Provet Cloud installation (EU / default region)
+  variables:
+    provet_id:
+      default: '0'
+      description: Your installation's unique Provet Cloud ID.
+- url: https://us.provetcloud.com/{provet_id}/api/0.1
+  description: Provet Cloud installation (US region)
+  variables:
+    provet_id:
+      default: '0'
+      description: Your installation's unique Provet Cloud ID.
+security:
+- oauth2: []
+tags:
+- name: Consultations
+  description: Clinical visits and their items.
+paths:
+  /consultation/:
+    get:
+      operationId: listConsultations
+      tags:
+      - Consultations
+      summary: List consultations
+      description: Retrieve and filter existing consultations.
+      responses:
+        '200':
+          description: A paginated list of consultations.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsultationList'
+    post:
+      operationId: createConsultation
+      tags:
+      - Consultations
+      summary: Create a consultation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Consultation'
+      responses:
+        '201':
+          description: The created consultation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consultation'
+  /consultation/{id}/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      operationId: getConsultation
+      tags:
+      - Consultations
+      summary: Get a consultation
+      responses:
+        '200':
+          description: The consultation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Consultation'
+  /consultation/{id}/update_status/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    post:
+      operationId: updateConsultationStatus
+      tags:
+      - Consultations
+      summary: Update consultation status
+      description: Advance a consultation through its lifecycle states.
+      responses:
+        '200':
+          description: Updated status.
+  /consultation/{id}/mark_sent/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    post:
+      operationId: markConsultationSent
+      tags:
+      - Consultations
+      summary: Mark consultation sent
+      description: Mark a consultation as exported to an external system.
+      responses:
+        '200':
+          description: Marked as sent.
+  /consultation/{id}/medicines/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      operationId: listConsultationMedicines
+      tags:
+      - Consultations
+      summary: List consultation medicines
+      responses:
+        '200':
+          description: Medicines on the consultation.
+    post:
+      operationId: addConsultationMedicine
+      tags:
+      - Consultations
+      summary: Add a medicine to a consultation
+      responses:
+        '201':
+          description: The added medicine item.
+  /consultation/{id}/procedures/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      operationId: listConsultationProcedures
+      tags:
+      - Consultations
+      summary: List consultation procedures
+      responses:
+        '200':
+          description: Procedures on the consultation.
+    post:
+      operationId: addConsultationProcedure
+      tags:
+      - Consultations
+      summary: Add a procedure to a consultation
+      responses:
+        '201':
+          description: The added procedure item.
+  /consultation/{id}/supplies/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      operationId: listConsultationSupplies
+      tags:
+      - Consultations
+      summary: List consultation supplies
+      responses:
+        '200':
+          description: Supplies on the consultation.
+    post:
+      operationId: addConsultationSupply
+      tags:
+      - Consultations
+      summary: Add a supply to a consultation
+      responses:
+        '201':
+          description: The added supply item.
+  /consultation/{id}/foods/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    get:
+      operationId: listConsultationFoods
+      tags:
+      - Consultations
+      summary: List consultation foods
+      responses:
+        '200':
+          description: Food items on the consultation.
+    post:
+      operationId: addConsultationFood
+      tags:
+      - Consultations
+      summary: Add a food item to a consultation
+      responses:
+        '201':
+          description: The added food item.
+  /consultation/{id}/consultationdiagnosis/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    post:
+      operationId: addConsultationDiagnosis
+      tags:
+      - Consultations
+      summary: Add a diagnosis to a consultation
+      description: Record a diagnosis linked to the patient on this consultation.
+      responses:
+        '201':
+          description: The added diagnosis.
+  /consultation/{id}/consultationnote/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    post:
+      operationId: addConsultationNote
+      tags:
+      - Consultations
+      summary: Add a note to a consultation
+      description: Add a clinical note (history, observations, preliminary).
+      responses:
+        '201':
+          description: The added note.
+  /consultation/{id}/consultationdischargeinstruction/:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    post:
+      operationId: addConsultationDischargeInstruction
+      tags:
+      - Consultations
+      summary: Add a discharge instruction
+      description: Document post-visit patient care instructions.
+      responses:
+        '201':
+          description: The added discharge instruction.
+  /consultationitem/:
+    get:
+      operationId: listConsultationItems
+      tags:
+      - Consultations
+      summary: List consultation items
+      description: Read-only access to all clinical items across types.
+      responses:
+        '200':
+          description: A list of consultation items.
+components:
+  schemas:
+    Consultation:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        client:
+          type: integer
+        patients:
+          type: array
+          items:
+            type: integer
+        department:
+          type: integer
+        complaint:
+          type: string
+        admitted_time:
+          type: string
+          format: date-time
+        status:
+          type: integer
+    ConsultationList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type: string
+          nullable: true
+        previous:
+          type: string
+          nullable: true
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Consultation'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0. Client Credentials for backend services; Authorization Code with PKCE for user-facing apps. Token endpoint is https://provetcloud.com/<provet_id>/oauth2/token/ with scope "restapi".
+      flows:
+        clientCredentials:
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+        authorizationCode:
+          authorizationUrl: https://provetcloud.com/0/oauth2/authorize/
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+            openid: Obtain additional user details.
