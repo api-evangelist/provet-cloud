@@ -13,7 +13,20 @@ description: Provet Cloud is a cloud-based veterinary practice management system
   Authorization Code with PKCE for user-facing apps); integrations are registered and
   approved by Provet's support team per installation. The documentation at
   developers.provetcloud.com is freely browsable by any customer or developer.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/provet-cloud.png
 tags:
 - Veterinary
 - Practice Management
@@ -27,167 +40,216 @@ created: '2026-07-03'
 modified: '2026-07-03'
 specificationVersion: '0.19'
 apis:
-- aid: provet-cloud:provet-cloud-clients-api
-  name: Provet Cloud Clients API
-  tags:
-  - Clients
-  - Owners
-  - CRM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.provetcloud.com/restapi/howto_clients_patients.html
-  baseURL: https://provetcloud.com/{provet_id}/api/0.1
-  properties:
-  - url: https://developers.provetcloud.com/restapi/
-    type: Documentation
-  - url: https://developers.provetcloud.com/restapi/howto_clients_patients.html
-    type: APIReference
-  - url: openapi/provet-cloud-openapi.yml
-    type: OpenAPI
-  - url: collections/provet-cloud.postman_collection.json
-    type: PostmanCollection
-  - url: collections/provet-cloud.opencollection.json
-    type: OpenCollection
-  description: Manage clients (the animal owners / bill payers) in a Provet Cloud
-    installation - list and filter clients by name, organization, email, or phone,
-    create new clients, patch client fields and communication preferences, attach
-    phone numbers, and read or write per-client custom field values.
-- aid: provet-cloud:provet-cloud-patients-api
-  name: Provet Cloud Patients API
-  tags:
-  - Patients
-  - Animals
-  - Medical Records
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.provetcloud.com/restapi/howto_clients_patients.html
-  baseURL: https://provetcloud.com/{provet_id}/api/0.1
-  properties:
-  - url: https://developers.provetcloud.com/restapi/howto_clients_patients.html
-    type: APIReference
-  - url: openapi/provet-cloud-openapi.yml
-    type: OpenAPI
-  - url: collections/provet-cloud.postman_collection.json
-    type: PostmanCollection
-  - url: collections/provet-cloud.opencollection.json
-    type: OpenCollection
-  description: Manage patients (the animals) linked to clients - list and filter by
-    client, name, microchip, species, or modification date, create single patients or
-    bulk-create many in one request, patch patient details such as microchip, weight,
-    or deceased status, and read or write per-patient custom field values.
 - aid: provet-cloud:provet-cloud-appointments-api
   name: Provet Cloud Appointments API
+  description: Appointments and online booking.
+  humanURL: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  baseURL: https://provetcloud.com/{provet_id}/api/0.1
   tags:
   - Appointments
-  - Online Booking
-  - Scheduling
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.provetcloud.com/restapi/howto_appointments.html
-  baseURL: https://provetcloud.com/{provet_id}/api/0.1
   properties:
-  - url: https://developers.provetcloud.com/restapi/howto_appointments.html
-    type: APIReference
-  - url: openapi/provet-cloud-openapi.yml
-    type: OpenAPI
-  - url: collections/provet-cloud.postman_collection.json
-    type: PostmanCollection
-  - url: collections/provet-cloud.opencollection.json
-    type: OpenCollection
-  description: Create appointments and drive an online booking platform - book
-    appointments against a department, reason, and supervising user, send appointment
-    confirmations, create appointment reminders, and register online-booking clients
-    and patients as part of a self-service booking flow.
-- aid: provet-cloud:provet-cloud-consultations-api
-  name: Provet Cloud Consultations API
-  tags:
-  - Consultations
-  - Clinical
-  - Treatment
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.provetcloud.com/restapi/howto_consultations.html
-  baseURL: https://provetcloud.com/{provet_id}/api/0.1
-  properties:
-  - url: https://developers.provetcloud.com/restapi/howto_consultations.html
-    type: APIReference
-  - url: openapi/provet-cloud-openapi.yml
-    type: OpenAPI
-  - url: collections/provet-cloud.postman_collection.json
-    type: PostmanCollection
-  - url: collections/provet-cloud.opencollection.json
-    type: OpenCollection
-  description: Create and manage consultations (clinical visits) - create and filter
-    consultations, advance them through their lifecycle with update_status, mark them
-    sent to external systems, and attach clinical items (medicines, procedures,
-    supplies, foods), diagnoses, notes, and discharge instructions.
+  - type: OpenAPI
+    url: openapi/provet-cloud-appointments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  - type: PostmanCollection
+    url: collections/provet-cloud.postman_collection.json
+  - type: OpenCollection
+    url: collections/provet-cloud.opencollection.json
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_appointments.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_consultations.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_billing.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/endpoints.html
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/webhooks.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/webhook_triggers.html
 - aid: provet-cloud:provet-cloud-billing-api
-  name: Provet Cloud Billing & Invoicing API
+  name: Provet Cloud Billing API
+  description: Invoices, refunds, and payments.
+  humanURL: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  baseURL: https://provetcloud.com/{provet_id}/api/0.1
   tags:
   - Billing
-  - Invoicing
-  - Payments
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.provetcloud.com/restapi/howto_billing.html
-  baseURL: https://provetcloud.com/{provet_id}/api/0.1
   properties:
-  - url: https://developers.provetcloud.com/restapi/howto_billing.html
-    type: APIReference
-  - url: openapi/provet-cloud-openapi.yml
-    type: OpenAPI
-  - url: collections/provet-cloud.postman_collection.json
-    type: PostmanCollection
-  - url: collections/provet-cloud.opencollection.json
-    type: OpenCollection
-  description: Read invoices and invoice rows, issue full or partial refunds (credit
-    notes), record and cancel payments against finalized invoices, and record
-    unallocated prepayments and read their available balances. Supports ERP and
-    accounting integration back-ends.
-- aid: provet-cloud:provet-cloud-items-reference-api
-  name: Provet Cloud Items & Reference Data API
+  - type: OpenAPI
+    url: openapi/provet-cloud-billing-api-openapi.yml
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  - type: PostmanCollection
+    url: collections/provet-cloud.postman_collection.json
+  - type: OpenCollection
+    url: collections/provet-cloud.opencollection.json
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_appointments.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_consultations.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_billing.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/endpoints.html
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/webhooks.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/webhook_triggers.html
+- aid: provet-cloud:provet-cloud-clients-api
+  name: Provet Cloud Clients API
+  description: Animal owners / bill payers.
+  humanURL: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  baseURL: https://provetcloud.com/{provet_id}/api/0.1
   tags:
-  - Items
-  - Products
-  - Reference Data
-  - Departments
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.provetcloud.com/restapi/endpoints.html
-  baseURL: https://provetcloud.com/{provet_id}/api/0.1
+  - Clients
   properties:
-  - url: https://developers.provetcloud.com/restapi/endpoints.html
-    type: APIReference
-  - url: openapi/provet-cloud-openapi.yml
-    type: OpenAPI
-  - url: collections/provet-cloud.postman_collection.json
-    type: PostmanCollection
-  - url: collections/provet-cloud.opencollection.json
-    type: OpenCollection
-  description: Read the master item catalog (medicines, procedures, supplies, foods),
-    departments, appointment reasons, users, custom field definitions, and code lists
-    (species, breeds, diagnoses) used as reference data when creating clients,
-    patients, appointments, and consultations.
+  - type: OpenAPI
+    url: openapi/provet-cloud-clients-api-openapi.yml
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  - type: PostmanCollection
+    url: collections/provet-cloud.postman_collection.json
+  - type: OpenCollection
+    url: collections/provet-cloud.opencollection.json
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_appointments.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_consultations.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_billing.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/endpoints.html
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/webhooks.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/webhook_triggers.html
+- aid: provet-cloud:provet-cloud-consultations-api
+  name: Provet Cloud Consultations API
+  description: Clinical visits and their items.
+  humanURL: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  baseURL: https://provetcloud.com/{provet_id}/api/0.1
+  tags:
+  - Consultations
+  properties:
+  - type: OpenAPI
+    url: openapi/provet-cloud-consultations-api-openapi.yml
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  - type: PostmanCollection
+    url: collections/provet-cloud.postman_collection.json
+  - type: OpenCollection
+    url: collections/provet-cloud.opencollection.json
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_appointments.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_consultations.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_billing.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/endpoints.html
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/webhooks.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/webhook_triggers.html
+- aid: provet-cloud:provet-cloud-patients-api
+  name: Provet Cloud Patients API
+  description: The animals under care.
+  humanURL: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  baseURL: https://provetcloud.com/{provet_id}/api/0.1
+  tags:
+  - Patients
+  properties:
+  - type: OpenAPI
+    url: openapi/provet-cloud-patients-api-openapi.yml
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  - type: PostmanCollection
+    url: collections/provet-cloud.postman_collection.json
+  - type: OpenCollection
+    url: collections/provet-cloud.opencollection.json
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_appointments.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_consultations.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_billing.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/endpoints.html
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/webhooks.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/webhook_triggers.html
+- aid: provet-cloud:provet-cloud-reference-data-api
+  name: Provet Cloud Reference Data API
+  description: Items, departments, users, and code lists.
+  humanURL: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  baseURL: https://provetcloud.com/{provet_id}/api/0.1
+  tags:
+  - Reference Data
+  properties:
+  - type: OpenAPI
+    url: openapi/provet-cloud-reference-data-api-openapi.yml
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  - type: PostmanCollection
+    url: collections/provet-cloud.postman_collection.json
+  - type: OpenCollection
+    url: collections/provet-cloud.opencollection.json
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_appointments.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_consultations.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_billing.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/endpoints.html
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/webhooks.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/webhook_triggers.html
 - aid: provet-cloud:provet-cloud-webhooks-api
   name: Provet Cloud Webhooks API
+  description: Event subscriptions.
+  humanURL: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  baseURL: https://provetcloud.com/{provet_id}/api/0.1
   tags:
   - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developers.provetcloud.com/restapi/webhooks.html
-  baseURL: https://provetcloud.com/{provet_id}/api/0.1
   properties:
-  - url: https://developers.provetcloud.com/restapi/webhooks.html
-    type: Documentation
-  - url: https://developers.provetcloud.com/restapi/webhook_triggers.html
-    type: APIReference
-  - url: openapi/provet-cloud-openapi.yml
-    type: OpenAPI
-  - url: collections/provet-cloud.postman_collection.json
-    type: PostmanCollection
-  - url: collections/provet-cloud.opencollection.json
-    type: OpenCollection
-  description: Subscribe to changes in a Provet Cloud installation. Provet Cloud POSTs
-    an event (with the changed object's ID) to a configured URL for 60+ triggers
-    across clients, patients, consultations, appointments, invoices, stock, imaging,
-    labs, and communications; webhooks can be scoped organization-wide or to a
-    department and are retried up to 10 times. Webhook subscriptions can be managed via
-    the API.
+  - type: OpenAPI
+    url: openapi/provet-cloud-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_clients_patients.html
+  - type: PostmanCollection
+    url: collections/provet-cloud.postman_collection.json
+  - type: OpenCollection
+    url: collections/provet-cloud.opencollection.json
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_appointments.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_consultations.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/howto_billing.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/endpoints.html
+  - type: Documentation
+    url: https://developers.provetcloud.com/restapi/webhooks.html
+  - type: APIReference
+    url: https://developers.provetcloud.com/restapi/webhook_triggers.html
 common:
 - type: AgenticAccess
   url: agentic-access/provet-cloud-agentic-access.yml
