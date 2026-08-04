@@ -1,0 +1,756 @@
+openapi: 3.0.3
+info:
+  title: Provet Cloud REST API
+  description: >-
+    The Provet Cloud REST API gives approved integration partners programmatic
+    access to the data in a Provet Cloud veterinary practice management (PIMS)
+    installation built by Nordhealth. The API is browsable, returns JSON, and is
+    versioned at 0.1. The base URL is installation-specific:
+    https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as
+    us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized
+    with OAuth 2.0 - Client Credentials for backend services, or Authorization
+    Code with PKCE for user-facing apps - using the token endpoint
+    https://provetcloud.com/<provet_id>/oauth2/token/ and the "restapi" scope.
+    A legacy "Authorization: Token <key>" header exists but is deprecated.
+    Integrations must be registered and approved by Provet's support team per
+    installation, so exact request/response schemas are seen against a live
+    instance; the paths below are grounded in the public documentation, and
+    request/response bodies are modeled where the public how-to pages do not
+    print a full schema.
+  version: '0.1'
+  contact:
+    name: Provet Cloud (Nordhealth)
+    url: https://developers.provetcloud.com/restapi/
+servers:
+  - url: https://provetcloud.com/{provet_id}/api/0.1
+    description: Provet Cloud installation (EU / default region)
+    variables:
+      provet_id:
+        default: '0'
+        description: Your installation's unique Provet Cloud ID.
+  - url: https://us.provetcloud.com/{provet_id}/api/0.1
+    description: Provet Cloud installation (US region)
+    variables:
+      provet_id:
+        default: '0'
+        description: Your installation's unique Provet Cloud ID.
+security:
+  - oauth2: []
+tags:
+  - name: Clients
+    description: Animal owners / bill payers.
+  - name: Patients
+    description: The animals under care.
+  - name: Appointments
+    description: Appointments and online booking.
+  - name: Consultations
+    description: Clinical visits and their items.
+  - name: Billing
+    description: Invoices, refunds, and payments.
+  - name: Reference Data
+    description: Items, departments, users, and code lists.
+  - name: Webhooks
+    description: Event subscriptions.
+paths:
+  /client/:
+    get:
+      operationId: listClients
+      tags: [Clients]
+      summary: List clients
+      description: >-
+        Fetch clients with optional filters such as firstname, lastname,
+        organization name, email, phone number, and archived status. Confirmed
+        in the Clients & Patients how-to.
+      parameters:
+        - { name: firstname, in: query, schema: { type: string } }
+        - { name: lastname, in: query, schema: { type: string } }
+        - { name: email, in: query, schema: { type: string } }
+        - { name: archived, in: query, schema: { type: boolean } }
+      responses:
+        '200':
+          description: A paginated list of clients.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ClientList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '429': { $ref: '#/components/responses/RateLimited' }
+    post:
+      operationId: createClient
+      tags: [Clients]
+      summary: Create a client
+      description: Create a new client record (name, email, country, customer type).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Client' }
+      responses:
+        '201':
+          description: The created client.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Client' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '429': { $ref: '#/components/responses/RateLimited' }
+  /client/{id}/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    patch:
+      operationId: updateClient
+      tags: [Clients]
+      summary: Update a client
+      description: Patch specific client fields such as email or communication preferences.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Client' }
+      responses:
+        '200':
+          description: The updated client.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Client' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /client/{id}/custom_field_values/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    get:
+      operationId: getClientCustomFieldValues
+      tags: [Clients]
+      summary: Get client custom field values
+      responses:
+        '200': { description: Custom field values for the client. }
+    post:
+      operationId: setClientCustomFieldValues
+      tags: [Clients]
+      summary: Set client custom field values
+      responses:
+        '200': { description: Updated custom field values. }
+  /phonenumber/:
+    get:
+      operationId: listPhoneNumbers
+      tags: [Clients]
+      summary: List phone numbers
+      description: List phone numbers associated with a client.
+      responses:
+        '200': { description: A list of phone numbers. }
+    post:
+      operationId: createPhoneNumber
+      tags: [Clients]
+      summary: Add a phone number
+      description: Add a phone number to a client record.
+      responses:
+        '201': { description: The created phone number. }
+  /patient/:
+    get:
+      operationId: listPatients
+      tags: [Patients]
+      summary: List patients
+      description: >-
+        Fetch patients (animals) with filters such as client ID, name, microchip,
+        species, and modification date.
+      parameters:
+        - { name: client, in: query, schema: { type: integer } }
+        - { name: microchip, in: query, schema: { type: string } }
+        - { name: species, in: query, schema: { type: string } }
+      responses:
+        '200':
+          description: A paginated list of patients.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PatientList' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+        '429': { $ref: '#/components/responses/RateLimited' }
+    post:
+      operationId: createPatient
+      tags: [Patients]
+      summary: Create a patient
+      description: Create a single patient record linked to a client.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Patient' }
+      responses:
+        '201':
+          description: The created patient.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Patient' }
+  /patient/bulk/:
+    post:
+      operationId: bulkCreatePatients
+      tags: [Patients]
+      summary: Bulk create patients
+      description: Create multiple patients in a single request, with partial success support.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items: { $ref: '#/components/schemas/Patient' }
+      responses:
+        '200': { description: Per-record creation results. }
+  /patient/{id}/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    patch:
+      operationId: updatePatient
+      tags: [Patients]
+      summary: Update a patient
+      description: Patch patient details such as microchip, weight, or deceased status.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Patient' }
+      responses:
+        '200':
+          description: The updated patient.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Patient' }
+  /patient/{id}/custom_field_values/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    get:
+      operationId: getPatientCustomFieldValues
+      tags: [Patients]
+      summary: Get patient custom field values
+      responses:
+        '200': { description: Custom field values for the patient. }
+    post:
+      operationId: setPatientCustomFieldValues
+      tags: [Patients]
+      summary: Set patient custom field values
+      responses:
+        '200': { description: Updated custom field values. }
+  /appointment/:
+    post:
+      operationId: createAppointment
+      tags: [Appointments]
+      summary: Create an appointment
+      description: >-
+        Create an appointment against a department, reason, and supervising user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Appointment' }
+      responses:
+        '201':
+          description: The created appointment.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Appointment' }
+  /appointment/{id}/send_appointment_confirmation/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    post:
+      operationId: sendAppointmentConfirmation
+      tags: [Appointments]
+      summary: Send appointment confirmation
+      description: Send a confirmation email/SMS for an appointment.
+      responses:
+        '200': { description: Confirmation queued. }
+  /appointment_reminder/:
+    post:
+      operationId: createAppointmentReminder
+      tags: [Appointments]
+      summary: Create an appointment reminder
+      responses:
+        '201': { description: The created reminder. }
+  /onlinebookingclient/:
+    post:
+      operationId: createOnlineBookingClient
+      tags: [Appointments]
+      summary: Create an online booking client
+      description: Register a client as part of a self-service online booking flow.
+      responses:
+        '201': { description: The created online booking client. }
+  /onlinebookingpatient/:
+    post:
+      operationId: createOnlineBookingPatient
+      tags: [Appointments]
+      summary: Create an online booking patient
+      description: Register a patient as part of a self-service online booking flow.
+      responses:
+        '201': { description: The created online booking patient. }
+  /consultation/:
+    get:
+      operationId: listConsultations
+      tags: [Consultations]
+      summary: List consultations
+      description: Retrieve and filter existing consultations.
+      responses:
+        '200':
+          description: A paginated list of consultations.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ConsultationList' }
+    post:
+      operationId: createConsultation
+      tags: [Consultations]
+      summary: Create a consultation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Consultation' }
+      responses:
+        '201':
+          description: The created consultation.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Consultation' }
+  /consultation/{id}/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    get:
+      operationId: getConsultation
+      tags: [Consultations]
+      summary: Get a consultation
+      responses:
+        '200':
+          description: The consultation.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Consultation' }
+  /consultation/{id}/update_status/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    post:
+      operationId: updateConsultationStatus
+      tags: [Consultations]
+      summary: Update consultation status
+      description: Advance a consultation through its lifecycle states.
+      responses:
+        '200': { description: Updated status. }
+  /consultation/{id}/mark_sent/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    post:
+      operationId: markConsultationSent
+      tags: [Consultations]
+      summary: Mark consultation sent
+      description: Mark a consultation as exported to an external system.
+      responses:
+        '200': { description: Marked as sent. }
+  /consultation/{id}/medicines/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    get:
+      operationId: listConsultationMedicines
+      tags: [Consultations]
+      summary: List consultation medicines
+      responses:
+        '200': { description: Medicines on the consultation. }
+    post:
+      operationId: addConsultationMedicine
+      tags: [Consultations]
+      summary: Add a medicine to a consultation
+      responses:
+        '201': { description: The added medicine item. }
+  /consultation/{id}/procedures/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    get:
+      operationId: listConsultationProcedures
+      tags: [Consultations]
+      summary: List consultation procedures
+      responses:
+        '200': { description: Procedures on the consultation. }
+    post:
+      operationId: addConsultationProcedure
+      tags: [Consultations]
+      summary: Add a procedure to a consultation
+      responses:
+        '201': { description: The added procedure item. }
+  /consultation/{id}/supplies/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    get:
+      operationId: listConsultationSupplies
+      tags: [Consultations]
+      summary: List consultation supplies
+      responses:
+        '200': { description: Supplies on the consultation. }
+    post:
+      operationId: addConsultationSupply
+      tags: [Consultations]
+      summary: Add a supply to a consultation
+      responses:
+        '201': { description: The added supply item. }
+  /consultation/{id}/foods/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    get:
+      operationId: listConsultationFoods
+      tags: [Consultations]
+      summary: List consultation foods
+      responses:
+        '200': { description: Food items on the consultation. }
+    post:
+      operationId: addConsultationFood
+      tags: [Consultations]
+      summary: Add a food item to a consultation
+      responses:
+        '201': { description: The added food item. }
+  /consultation/{id}/consultationdiagnosis/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    post:
+      operationId: addConsultationDiagnosis
+      tags: [Consultations]
+      summary: Add a diagnosis to a consultation
+      description: Record a diagnosis linked to the patient on this consultation.
+      responses:
+        '201': { description: The added diagnosis. }
+  /consultation/{id}/consultationnote/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    post:
+      operationId: addConsultationNote
+      tags: [Consultations]
+      summary: Add a note to a consultation
+      description: Add a clinical note (history, observations, preliminary).
+      responses:
+        '201': { description: The added note. }
+  /consultation/{id}/consultationdischargeinstruction/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    post:
+      operationId: addConsultationDischargeInstruction
+      tags: [Consultations]
+      summary: Add a discharge instruction
+      description: Document post-visit patient care instructions.
+      responses:
+        '201': { description: The added discharge instruction. }
+  /consultationitem/:
+    get:
+      operationId: listConsultationItems
+      tags: [Consultations]
+      summary: List consultation items
+      description: Read-only access to all clinical items across types.
+      responses:
+        '200': { description: A list of consultation items. }
+  /invoice/:
+    get:
+      operationId: listInvoices
+      tags: [Billing]
+      summary: List invoices
+      description: Retrieve invoices with filtering options.
+      responses:
+        '200':
+          description: A paginated list of invoices.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/InvoiceList' }
+  /invoice/{id}/full_refund/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    post:
+      operationId: fullRefundInvoice
+      tags: [Billing]
+      summary: Full refund (credit note)
+      description: Generate a complete credit note for an invoice.
+      responses:
+        '200': { description: The credit note. }
+  /invoice/{id}/partial_refund/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    post:
+      operationId: partialRefundInvoice
+      tags: [Billing]
+      summary: Partial refund (credit note)
+      description: Generate a partial credit note for selected invoice rows.
+      responses:
+        '200': { description: The partial credit note. }
+  /invoicerow/:
+    get:
+      operationId: listInvoiceRows
+      tags: [Billing]
+      summary: List invoice rows
+      description: Fetch line items for invoices.
+      responses:
+        '200': { description: A list of invoice rows. }
+  /invoicerow/{id}/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    get:
+      operationId: getInvoiceRow
+      tags: [Billing]
+      summary: Get an invoice row
+      description: Retrieve an invoice row, optionally exposing related fields.
+      responses:
+        '200': { description: The invoice row. }
+  /invoicepayment/:
+    get:
+      operationId: listInvoicePayments
+      tags: [Billing]
+      summary: List invoice payments
+      responses:
+        '200': { description: A list of payments. }
+    post:
+      operationId: createInvoicePayment
+      tags: [Billing]
+      summary: Record an invoice payment
+      description: >-
+        Record a payment against a finalized invoice (status 3). Payments can
+        only be recorded against finalized invoices.
+      responses:
+        '201': { description: The recorded payment. }
+  /invoicepayment/{id}/cancel_payment/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    post:
+      operationId: cancelInvoicePayment
+      tags: [Billing]
+      summary: Cancel an invoice payment
+      description: Reverse an incorrectly recorded payment.
+      responses:
+        '200': { description: The cancelled payment. }
+  /unallocatedpayment/:
+    get:
+      operationId: listUnallocatedPayments
+      tags: [Billing]
+      summary: List unallocated payments
+      description: Retrieve prepayment records and available balances.
+      responses:
+        '200': { description: A list of unallocated payments. }
+    post:
+      operationId: createUnallocatedPayment
+      tags: [Billing]
+      summary: Record an unallocated payment
+      description: Record funds received before invoice creation (a prepayment).
+      responses:
+        '201': { description: The recorded prepayment. }
+  /item/:
+    get:
+      operationId: listItems
+      tags: [Reference Data]
+      summary: List items
+      description: Retrieve the master catalog for medicines, procedures, supplies, and food.
+      responses:
+        '200': { description: A list of catalog items. }
+  /department/{id}/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    get:
+      operationId: getDepartment
+      tags: [Reference Data]
+      summary: Get a department
+      responses:
+        '200': { description: The department. }
+  /reason/{id}/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    get:
+      operationId: getReason
+      tags: [Reference Data]
+      summary: Get an appointment reason
+      responses:
+        '200': { description: The appointment reason. }
+  /user/{id}/:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: integer } }
+    get:
+      operationId: getUser
+      tags: [Reference Data]
+      summary: Get a user
+      responses:
+        '200': { description: The user. }
+  /custom_fields/:
+    get:
+      operationId: listCustomFields
+      tags: [Reference Data]
+      summary: List custom field definitions
+      description: List all custom field definitions for the installation.
+      responses:
+        '200': { description: A list of custom field definitions. }
+  /codelist/species/:
+    get:
+      operationId: listSpeciesCodes
+      tags: [Reference Data]
+      summary: List species codes
+      responses:
+        '200': { description: Valid species codes. }
+  /codelist/breeds/:
+    get:
+      operationId: listBreedCodes
+      tags: [Reference Data]
+      summary: List breed codes
+      responses:
+        '200': { description: Valid breed codes. }
+  /codelist/diagnoses/:
+    get:
+      operationId: listDiagnosisCodes
+      tags: [Reference Data]
+      summary: List diagnosis codes
+      responses:
+        '200': { description: Available diagnostic codes. }
+  /webhook/:
+    get:
+      operationId: listWebhooks
+      tags: [Webhooks]
+      summary: List webhooks
+      description: >-
+        List webhook subscriptions. Webhooks can also be managed in Settings >
+        General > Integrations > Webhooks; automating creation via the API is
+        recommended. Path modeled from the documented webhook-management behavior.
+      responses:
+        '200': { description: A list of webhook subscriptions. }
+    post:
+      operationId: createWebhook
+      tags: [Webhooks]
+      summary: Create a webhook
+      description: >-
+        Create a webhook subscription for a trigger, scoped organization-wide or
+        to a department. Provet Cloud POSTs the changed object's ID to the target
+        URL and retries up to 10 times on non-200 responses.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Webhook' }
+      responses:
+        '201': { description: The created webhook subscription. }
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: >-
+        OAuth 2.0. Client Credentials for backend services; Authorization Code
+        with PKCE for user-facing apps. Token endpoint is
+        https://provetcloud.com/<provet_id>/oauth2/token/ with scope "restapi".
+      flows:
+        clientCredentials:
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+        authorizationCode:
+          authorizationUrl: https://provetcloud.com/0/oauth2/authorize/
+          tokenUrl: https://provetcloud.com/0/oauth2/token/
+          scopes:
+            restapi: Access the Provet Cloud REST API.
+            openid: Obtain additional user details.
+  responses:
+    Unauthorized:
+      description: Missing or invalid OAuth 2.0 access token.
+    RateLimited:
+      description: >-
+        Too Many Requests. Rate limits are per-endpoint over a rolling 60-second
+        window; a Retry-After header indicates how long to wait.
+      headers:
+        Retry-After:
+          schema: { type: integer }
+          description: Seconds to wait before retrying.
+  schemas:
+    Client:
+      type: object
+      description: An animal owner / bill payer.
+      properties:
+        id: { type: integer, readOnly: true }
+        firstname: { type: string }
+        lastname: { type: string }
+        organization_name: { type: string }
+        email: { type: string, format: email }
+        country: { type: string }
+        customer_type: { type: integer }
+        archived: { type: boolean }
+    ClientList:
+      type: object
+      properties:
+        count: { type: integer }
+        next: { type: string, nullable: true }
+        previous: { type: string, nullable: true }
+        results:
+          type: array
+          items: { $ref: '#/components/schemas/Client' }
+    Patient:
+      type: object
+      description: An animal under care, linked to a client.
+      properties:
+        id: { type: integer, readOnly: true }
+        client: { type: integer }
+        name: { type: string }
+        species: { type: integer }
+        breed: { type: integer }
+        gender: { type: string }
+        microchip: { type: string }
+        weight: { type: number }
+        deceased: { type: boolean }
+        date_of_registration: { type: string, format: date }
+    PatientList:
+      type: object
+      properties:
+        count: { type: integer }
+        next: { type: string, nullable: true }
+        previous: { type: string, nullable: true }
+        results:
+          type: array
+          items: { $ref: '#/components/schemas/Patient' }
+    Appointment:
+      type: object
+      properties:
+        id: { type: integer, readOnly: true }
+        client: { type: integer }
+        patient: { type: integer }
+        department: { type: integer }
+        reason: { type: integer }
+        supervising_user: { type: integer }
+        start_time: { type: string, format: date-time }
+        end_time: { type: string, format: date-time }
+    Consultation:
+      type: object
+      properties:
+        id: { type: integer, readOnly: true }
+        client: { type: integer }
+        patients:
+          type: array
+          items: { type: integer }
+        department: { type: integer }
+        complaint: { type: string }
+        admitted_time: { type: string, format: date-time }
+        status: { type: integer }
+    ConsultationList:
+      type: object
+      properties:
+        count: { type: integer }
+        next: { type: string, nullable: true }
+        previous: { type: string, nullable: true }
+        results:
+          type: array
+          items: { $ref: '#/components/schemas/Consultation' }
+    InvoiceList:
+      type: object
+      properties:
+        count: { type: integer }
+        next: { type: string, nullable: true }
+        previous: { type: string, nullable: true }
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: integer }
+              status:
+                type: integer
+                description: 3 = Finalized (required before recording payments).
+              total: { type: number }
+    Webhook:
+      type: object
+      properties:
+        id: { type: integer, readOnly: true }
+        name: { type: string }
+        trigger:
+          type: string
+          description: One of the 60+ documented webhook triggers.
+        url: { type: string, format: uri }
+        department:
+          type: integer
+          nullable: true
+          description: If empty, the webhook is organization-wide.
+        active: { type: boolean }

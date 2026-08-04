@@ -1,0 +1,26 @@
+{
+  "provider": "provet-cloud",
+  "sources": [
+    "provet-cloud-appointments-api-openapi.yml",
+    "provet-cloud-billing-api-openapi.yml",
+    "provet-cloud-clients-api-openapi.yml",
+    "provet-cloud-consultations-api-openapi.yml",
+    "provet-cloud-patients-api-openapi.yml",
+    "provet-cloud-reference-data-api-openapi.yml",
+    "provet-cloud-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "provet-cloud-appointments-api-openapi.yml",
+    "provet-cloud-billing-api-openapi.yml",
+    "provet-cloud-clients-api-openapi.yml",
+    "provet-cloud-consultations-api-openapi.yml",
+    "provet-cloud-patients-api-openapi.yml",
+    "provet-cloud-reference-data-api-openapi.yml",
+    "provet-cloud-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
