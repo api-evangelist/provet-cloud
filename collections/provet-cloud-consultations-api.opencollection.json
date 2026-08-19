@@ -1,0 +1,318 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Provet Cloud REST Appointments Consultations API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://provetcloud.com/0/oauth2/token/",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Consultations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List consultations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/"
+          },
+          "docs": "Retrieve and filter existing consultations."
+        },
+        {
+          "info": {
+            "name": "Create a consultation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a consultation"
+        },
+        {
+          "info": {
+            "name": "Get a consultation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a consultation"
+        },
+        {
+          "info": {
+            "name": "Update consultation status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/update_status/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Advance a consultation through its lifecycle states."
+        },
+        {
+          "info": {
+            "name": "Mark consultation sent",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/mark_sent/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mark a consultation as exported to an external system."
+        },
+        {
+          "info": {
+            "name": "List consultation medicines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/medicines/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List consultation medicines"
+        },
+        {
+          "info": {
+            "name": "Add a medicine to a consultation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/medicines/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add a medicine to a consultation"
+        },
+        {
+          "info": {
+            "name": "List consultation procedures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/procedures/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List consultation procedures"
+        },
+        {
+          "info": {
+            "name": "Add a procedure to a consultation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/procedures/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add a procedure to a consultation"
+        },
+        {
+          "info": {
+            "name": "List consultation supplies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/supplies/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List consultation supplies"
+        },
+        {
+          "info": {
+            "name": "Add a supply to a consultation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/supplies/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add a supply to a consultation"
+        },
+        {
+          "info": {
+            "name": "List consultation foods",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/foods/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List consultation foods"
+        },
+        {
+          "info": {
+            "name": "Add a food item to a consultation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/foods/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add a food item to a consultation"
+        },
+        {
+          "info": {
+            "name": "Add a diagnosis to a consultation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/consultationdiagnosis/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Record a diagnosis linked to the patient on this consultation."
+        },
+        {
+          "info": {
+            "name": "Add a note to a consultation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/consultationnote/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add a clinical note (history, observations, preliminary)."
+        },
+        {
+          "info": {
+            "name": "Add a discharge instruction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultation/:id/consultationdischargeinstruction/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Document post-visit patient care instructions."
+        },
+        {
+          "info": {
+            "name": "List consultation items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/consultationitem/"
+          },
+          "docs": "Read-only access to all clinical items across types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

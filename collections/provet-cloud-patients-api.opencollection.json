@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Provet Cloud REST Appointments Patients API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://provetcloud.com/0/oauth2/token/",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Patients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List patients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/patient/",
+            "params": [
+              {
+                "name": "client",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "microchip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "species",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch patients (animals) with filters such as client ID, name, microchip, species, and modification date."
+        },
+        {
+          "info": {
+            "name": "Create a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/patient/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a single patient record linked to a client."
+        },
+        {
+          "info": {
+            "name": "Bulk create patients",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/patient/bulk/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create multiple patients in a single request, with partial success support."
+        },
+        {
+          "info": {
+            "name": "Update a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/patient/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch patient details such as microchip, weight, or deceased status."
+        },
+        {
+          "info": {
+            "name": "Get patient custom field values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/patient/:id/custom_field_values/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get patient custom field values"
+        },
+        {
+          "info": {
+            "name": "Set patient custom field values",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/patient/:id/custom_field_values/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Set patient custom field values"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

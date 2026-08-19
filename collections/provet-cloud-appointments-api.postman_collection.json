@@ -1,0 +1,524 @@
+{
+  "item": [
+    {
+      "id": "9054ca2b-7504-4607-85b6-702d718fab66",
+      "name": "Appointments",
+      "description": {
+        "content": "Appointments and online booking.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e045f8b-6654-4d83-a7c2-24b6e9243758",
+          "name": "Create an appointment",
+          "request": {
+            "name": "Create an appointment",
+            "description": {
+              "content": "Create an appointment against a department, reason, and supervising user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "appointment",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client\": \"<integer>\",\n  \"patient\": \"<integer>\",\n  \"department\": \"<integer>\",\n  \"reason\": \"<integer>\",\n  \"supervising_user\": \"<integer>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "02b3e489-9829-48c1-84fd-b6af251644f0",
+              "name": "The created appointment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client\": \"<integer>\",\n  \"patient\": \"<integer>\",\n  \"department\": \"<integer>\",\n  \"reason\": \"<integer>\",\n  \"supervising_user\": \"<integer>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5703,\n  \"client\": \"<integer>\",\n  \"patient\": \"<integer>\",\n  \"department\": \"<integer>\",\n  \"reason\": \"<integer>\",\n  \"supervising_user\": \"<integer>\",\n  \"start_time\": \"<dateTime>\",\n  \"end_time\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddc5af65-af6c-4746-82eb-c2747bf9effa",
+          "name": "Send appointment confirmation",
+          "request": {
+            "name": "Send appointment confirmation",
+            "description": {
+              "content": "Send a confirmation email/SMS for an appointment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "appointment",
+                ":id",
+                "send_appointment_confirmation",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e297dd93-9157-4a71-941a-b156c76fe460",
+              "name": "Confirmation queued.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointment",
+                    ":id",
+                    "send_appointment_confirmation",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "479b632d-30a6-4364-9e89-c933b7736b64",
+          "name": "Create an appointment reminder",
+          "request": {
+            "name": "Create an appointment reminder",
+            "description": {},
+            "url": {
+              "path": [
+                "appointment_reminder",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "916d44c7-4613-4849-8f3d-544d166418fb",
+              "name": "The created reminder.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointment_reminder",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a22ae8d-c767-4d62-8781-e82ba071b8ff",
+          "name": "Create an online booking client",
+          "request": {
+            "name": "Create an online booking client",
+            "description": {
+              "content": "Register a client as part of a self-service online booking flow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "onlinebookingclient",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "778aaf33-7c92-4ec6-994a-a40265f60a62",
+              "name": "The created online booking client.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "onlinebookingclient",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51a25189-9172-489d-8244-b433a8f6f125",
+          "name": "Create an online booking patient",
+          "request": {
+            "name": "Create an online booking patient",
+            "description": {
+              "content": "Register a patient as part of a self-service online booking flow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "onlinebookingpatient",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e08ca3c-cf28-4a62-8436-b58a9af60ac3",
+              "name": "The created online booking patient.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "onlinebookingpatient",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your installation's unique Provet Cloud ID.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "0",
+      "key": "provet_id"
+    },
+    {
+      "type": "string",
+      "value": "https://provetcloud.com/{{provet_id}}/api/0.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "restapi"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://provetcloud.com/0/oauth2/token/"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "249abd4a-4186-41d5-a4e4-093916ba26b7",
+    "name": "Provet Cloud REST Appointments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth. The API is browsable, returns JSON, and is versioned at 0.1. The base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized with OAuth 2.0 - Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps - using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and the \"restapi\" scope. A legacy \"Authorization: Token <key>\" header exists but is deprecated. Integrations must be registered and approved by Provet's support team per installation, so exact request/response schemas are seen against a live instance; the paths below are grounded in the public documentation, and request/response bodies are modeled where the public how-to pages do not print a full schema.\n\nContact Support:\n Name: Provet Cloud (Nordhealth)",
+      "type": "text/plain"
+    }
+  }
+}

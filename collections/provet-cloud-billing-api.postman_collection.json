@@ -1,0 +1,975 @@
+{
+  "item": [
+    {
+      "id": "b8b3033f-bfd7-43be-9db2-80caa8b25301",
+      "name": "Billing",
+      "description": {
+        "content": "Invoices, refunds, and payments.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "93e5ebc5-cb3f-453b-b8d4-b3ea5e2d906f",
+          "name": "List invoices",
+          "request": {
+            "name": "List invoices",
+            "description": {
+              "content": "Retrieve invoices with filtering options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoice",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd38d5a3-7ee8-4ffd-ab50-a2a896dc2961",
+              "name": "A paginated list of invoices.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 8447,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": 805,\n      \"status\": 3259,\n      \"total\": 296.11442128431145\n    },\n    {\n      \"id\": 6664,\n      \"status\": 5594,\n      \"total\": 6287.283817482756\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5e7898b-181e-42e2-866d-62aa9835f020",
+          "name": "Full refund (credit note)",
+          "request": {
+            "name": "Full refund (credit note)",
+            "description": {
+              "content": "Generate a complete credit note for an invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoice",
+                ":id",
+                "full_refund",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df7f8ce9-a49e-41ef-92f5-379633981aac",
+              "name": "The credit note.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":id",
+                    "full_refund",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39fe9c0f-0242-4200-a1a6-d195238b0bf2",
+          "name": "Partial refund (credit note)",
+          "request": {
+            "name": "Partial refund (credit note)",
+            "description": {
+              "content": "Generate a partial credit note for selected invoice rows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoice",
+                ":id",
+                "partial_refund",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cda8f5ee-2632-4e4a-bafd-26f6fac2455a",
+              "name": "The partial credit note.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":id",
+                    "partial_refund",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0f43075-f520-4fd3-ad05-c7ebd4d28cf1",
+          "name": "List invoice rows",
+          "request": {
+            "name": "List invoice rows",
+            "description": {
+              "content": "Fetch line items for invoices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicerow",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "84a1e32e-ca8c-4733-b14a-13dbe2056c20",
+              "name": "A list of invoice rows.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicerow",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5a6995c-d728-41a2-9480-1a5b63ae274e",
+          "name": "Get an invoice row",
+          "request": {
+            "name": "Get an invoice row",
+            "description": {
+              "content": "Retrieve an invoice row, optionally exposing related fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicerow",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78cc5f03-7e95-471d-be8d-deaf53c5eade",
+              "name": "The invoice row.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicerow",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1b44b277-675f-46d8-875c-aa09224ba02d",
+          "name": "List invoice payments",
+          "request": {
+            "name": "List invoice payments",
+            "description": {},
+            "url": {
+              "path": [
+                "invoicepayment",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f48bafb-dbe0-4b52-9ddf-44ec9417725c",
+              "name": "A list of payments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicepayment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c84c1cf-0241-4ad0-b88d-2e89b0383046",
+          "name": "Record an invoice payment",
+          "request": {
+            "name": "Record an invoice payment",
+            "description": {
+              "content": "Record a payment against a finalized invoice (status 3). Payments can only be recorded against finalized invoices.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicepayment",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df7992c9-6939-472e-b475-ca80313a8032",
+              "name": "The recorded payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicepayment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1061dc67-5154-4c7d-9cde-75482a171e42",
+          "name": "Cancel an invoice payment",
+          "request": {
+            "name": "Cancel an invoice payment",
+            "description": {
+              "content": "Reverse an incorrectly recorded payment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoicepayment",
+                ":id",
+                "cancel_payment",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61959ab4-2022-4d8a-80f0-352f8078d04b",
+              "name": "The cancelled payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoicepayment",
+                    ":id",
+                    "cancel_payment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0300bda9-0f04-4a3f-b4db-18baae46f572",
+          "name": "List unallocated payments",
+          "request": {
+            "name": "List unallocated payments",
+            "description": {
+              "content": "Retrieve prepayment records and available balances.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unallocatedpayment",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4f116f2-eeeb-46c8-801a-1acbbbf1aeef",
+              "name": "A list of unallocated payments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unallocatedpayment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9c39b12-a805-4fe2-ac8f-483f0923df04",
+          "name": "Record an unallocated payment",
+          "request": {
+            "name": "Record an unallocated payment",
+            "description": {
+              "content": "Record funds received before invoice creation (a prepayment).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "unallocatedpayment",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12d85a8b-6dc3-4e52-8ac1-65f268ea6d13",
+              "name": "The recorded prepayment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "unallocatedpayment",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your installation's unique Provet Cloud ID.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "0",
+      "key": "provet_id"
+    },
+    {
+      "type": "string",
+      "value": "https://provetcloud.com/{{provet_id}}/api/0.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "restapi"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://provetcloud.com/0/oauth2/token/"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e9cb4942-9168-4aea-acb8-87475bb7a93b",
+    "name": "Provet Cloud REST Appointments Billing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth. The API is browsable, returns JSON, and is versioned at 0.1. The base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized with OAuth 2.0 - Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps - using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and the \"restapi\" scope. A legacy \"Authorization: Token <key>\" header exists but is deprecated. Integrations must be registered and approved by Provet's support team per installation, so exact request/response schemas are seen against a live instance; the paths below are grounded in the public documentation, and request/response bodies are modeled where the public how-to pages do not print a full schema.\n\nContact Support:\n Name: Provet Cloud (Nordhealth)",
+      "type": "text/plain"
+    }
+  }
+}

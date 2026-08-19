@@ -1,0 +1,766 @@
+{
+  "item": [
+    {
+      "id": "061edd9c-5a4c-46c8-b254-6e2adc8eea67",
+      "name": "Reference Data",
+      "description": {
+        "content": "Items, departments, users, and code lists.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fafcd785-1bae-4bce-ae5f-2ceddc2025ae",
+          "name": "List items",
+          "request": {
+            "name": "List items",
+            "description": {
+              "content": "Retrieve the master catalog for medicines, procedures, supplies, and food.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "item",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39ffa898-a22d-4b02-bda3-a6e60b7d1125",
+              "name": "A list of catalog items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "item",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e055066-3288-4414-9262-a7d4399b65c6",
+          "name": "Get a department",
+          "request": {
+            "name": "Get a department",
+            "description": {},
+            "url": {
+              "path": [
+                "department",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9fee0d95-75b3-4675-8d9d-e091e5329bee",
+              "name": "The department.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "department",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed1d62e5-1373-4c4b-a458-ba74e2554d41",
+          "name": "Get an appointment reason",
+          "request": {
+            "name": "Get an appointment reason",
+            "description": {},
+            "url": {
+              "path": [
+                "reason",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c22d72e-fdb4-4acc-9be6-9a3f23a68fca",
+              "name": "The appointment reason.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reason",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a51f59f4-4cc3-4ccb-b0ae-6a5c85ed203b",
+          "name": "Get a user",
+          "request": {
+            "name": "Get a user",
+            "description": {},
+            "url": {
+              "path": [
+                "user",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e405f93e-c687-47c1-88c7-3fcd251201b5",
+              "name": "The user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "user",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84b7d503-4a62-469b-b05a-07c831839a6d",
+          "name": "List custom field definitions",
+          "request": {
+            "name": "List custom field definitions",
+            "description": {
+              "content": "List all custom field definitions for the installation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom_fields",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f9b5e31-2b91-4039-98e3-ccbcbaba0b06",
+              "name": "A list of custom field definitions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom_fields",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc87abfc-59b4-4e9c-8d41-a9ff00d1dc39",
+          "name": "List species codes",
+          "request": {
+            "name": "List species codes",
+            "description": {},
+            "url": {
+              "path": [
+                "codelist",
+                "species",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48e80f33-e96b-4e66-8025-6805bd6b84a9",
+              "name": "Valid species codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codelist",
+                    "species",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "361f48cf-d93c-4aad-8a40-286ab0e0929f",
+          "name": "List breed codes",
+          "request": {
+            "name": "List breed codes",
+            "description": {},
+            "url": {
+              "path": [
+                "codelist",
+                "breeds",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "553126fd-8e99-4b5c-a6ef-6bbf33d53272",
+              "name": "Valid breed codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codelist",
+                    "breeds",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3650b09f-a1ac-4358-9e54-ba7a63763ec0",
+          "name": "List diagnosis codes",
+          "request": {
+            "name": "List diagnosis codes",
+            "description": {},
+            "url": {
+              "path": [
+                "codelist",
+                "diagnoses",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59ac7f49-da8b-46a5-b99d-62da695be485",
+              "name": "Available diagnostic codes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "codelist",
+                    "diagnoses",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your installation's unique Provet Cloud ID.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "0",
+      "key": "provet_id"
+    },
+    {
+      "type": "string",
+      "value": "https://provetcloud.com/{{provet_id}}/api/0.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "restapi"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://provetcloud.com/0/oauth2/token/"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "98da2b47-745c-4976-a602-6ac8e1d1755e",
+    "name": "Provet Cloud REST Appointments Reference Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth. The API is browsable, returns JSON, and is versioned at 0.1. The base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized with OAuth 2.0 - Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps - using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and the \"restapi\" scope. A legacy \"Authorization: Token <key>\" header exists but is deprecated. Integrations must be registered and approved by Provet's support team per installation, so exact request/response schemas are seen against a live instance; the paths below are grounded in the public documentation, and request/response bodies are modeled where the public how-to pages do not print a full schema.\n\nContact Support:\n Name: Provet Cloud (Nordhealth)",
+      "type": "text/plain"
+    }
+  }
+}

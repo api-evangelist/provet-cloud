@@ -1,0 +1,1757 @@
+{
+  "item": [
+    {
+      "id": "72c3d851-7ae8-4016-a5fa-d1a7ed6fed23",
+      "name": "Consultations",
+      "description": {
+        "content": "Clinical visits and their items.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd7130e6-bf3c-4ad7-be79-fc5668f39635",
+          "name": "List consultations",
+          "request": {
+            "name": "List consultations",
+            "description": {
+              "content": "Retrieve and filter existing consultations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consultation",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "649e49d1-ccef-490d-8a8b-17fba95597a0",
+              "name": "A paginated list of consultations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 5353,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": 7916,\n      \"client\": 5518,\n      \"patients\": [\n        1627,\n        3440\n      ],\n      \"department\": 7269,\n      \"complaint\": \"string\",\n      \"admitted_time\": \"1962-05-16T16:05:48.876Z\",\n      \"status\": 7326\n    },\n    {\n      \"id\": 3114,\n      \"client\": 8067,\n      \"patients\": [\n        580,\n        6030\n      ],\n      \"department\": 9545,\n      \"complaint\": \"string\",\n      \"admitted_time\": \"1981-01-20T19:30:28.177Z\",\n      \"status\": 7088\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd73a216-fe57-46aa-a793-f999c45fadcc",
+          "name": "Create a consultation",
+          "request": {
+            "name": "Create a consultation",
+            "description": {},
+            "url": {
+              "path": [
+                "consultation",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client\": \"<integer>\",\n  \"patients\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"department\": \"<integer>\",\n  \"complaint\": \"<string>\",\n  \"admitted_time\": \"<dateTime>\",\n  \"status\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a21d491d-11d9-40cf-b25b-e2a51188eab3",
+              "name": "The created consultation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client\": \"<integer>\",\n  \"patients\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"department\": \"<integer>\",\n  \"complaint\": \"<string>\",\n  \"admitted_time\": \"<dateTime>\",\n  \"status\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5159,\n  \"client\": \"<integer>\",\n  \"patients\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"department\": \"<integer>\",\n  \"complaint\": \"<string>\",\n  \"admitted_time\": \"<dateTime>\",\n  \"status\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d17073f-b7d6-4f2b-857d-a6c9ab6a3440",
+          "name": "Get a consultation",
+          "request": {
+            "name": "Get a consultation",
+            "description": {},
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a5b08212-4a1c-4f80-bb98-9ea95d14fede",
+              "name": "The consultation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5159,\n  \"client\": \"<integer>\",\n  \"patients\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"department\": \"<integer>\",\n  \"complaint\": \"<string>\",\n  \"admitted_time\": \"<dateTime>\",\n  \"status\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3dc735c-64e1-4337-9652-160a4700d14e",
+          "name": "Update consultation status",
+          "request": {
+            "name": "Update consultation status",
+            "description": {
+              "content": "Advance a consultation through its lifecycle states.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "update_status",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51825021-f602-4060-be48-6e4b3984189e",
+              "name": "Updated status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "update_status",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc54bdfb-1519-44c5-a495-87a1b4406832",
+          "name": "Mark consultation sent",
+          "request": {
+            "name": "Mark consultation sent",
+            "description": {
+              "content": "Mark a consultation as exported to an external system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "mark_sent",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da3ffd0f-5041-460e-82a5-f13b3601279b",
+              "name": "Marked as sent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "mark_sent",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "922b3c75-4088-4cd9-87c6-bbb2dda062ef",
+          "name": "List consultation medicines",
+          "request": {
+            "name": "List consultation medicines",
+            "description": {},
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "medicines",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f08d0848-a460-4e8f-ab2e-05116a729126",
+              "name": "Medicines on the consultation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "medicines",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "762b6778-7309-48d1-9739-effa942fba76",
+          "name": "Add a medicine to a consultation",
+          "request": {
+            "name": "Add a medicine to a consultation",
+            "description": {},
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "medicines",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c589cc5-4ccd-490d-9e88-95ba695729dd",
+              "name": "The added medicine item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "medicines",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4da1392b-0bc2-4074-b5d3-88f4187ce11b",
+          "name": "List consultation procedures",
+          "request": {
+            "name": "List consultation procedures",
+            "description": {},
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "procedures",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c25b76b1-f54f-4c86-a8fb-006351a0385d",
+              "name": "Procedures on the consultation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "procedures",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe6b8cc4-f4ac-4f46-bc25-b70cf5204e33",
+          "name": "Add a procedure to a consultation",
+          "request": {
+            "name": "Add a procedure to a consultation",
+            "description": {},
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "procedures",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fde4eab9-ddd6-4d8e-a2b1-b992f5ee963e",
+              "name": "The added procedure item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "procedures",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20924505-3424-4dc4-820f-1d563fae24d8",
+          "name": "List consultation supplies",
+          "request": {
+            "name": "List consultation supplies",
+            "description": {},
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "supplies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "adb10586-2673-48ba-a670-ee2cf511f95e",
+              "name": "Supplies on the consultation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "supplies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6feb755e-7088-41e1-a919-3412d1e95a04",
+          "name": "Add a supply to a consultation",
+          "request": {
+            "name": "Add a supply to a consultation",
+            "description": {},
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "supplies",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5060d10d-4086-4a6e-a2b5-80ab979fb7b2",
+              "name": "The added supply item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "supplies",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "150862a8-4150-4dc8-af0f-e60f3b595621",
+          "name": "List consultation foods",
+          "request": {
+            "name": "List consultation foods",
+            "description": {},
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "foods",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0bf469f-b358-4542-af23-2d3ac2f0a4da",
+              "name": "Food items on the consultation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "foods",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e0dd18c-f97e-4dca-87b1-209e22b6066c",
+          "name": "Add a food item to a consultation",
+          "request": {
+            "name": "Add a food item to a consultation",
+            "description": {},
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "foods",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66ce8916-7fd5-4bb8-8fd7-8059c00a4425",
+              "name": "The added food item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "foods",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5b63b63-1d4f-4c60-b7ca-dc7d3ce6338b",
+          "name": "Add a diagnosis to a consultation",
+          "request": {
+            "name": "Add a diagnosis to a consultation",
+            "description": {
+              "content": "Record a diagnosis linked to the patient on this consultation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "consultationdiagnosis",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f980e5e-4078-4f09-9a17-52d676065b67",
+              "name": "The added diagnosis.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "consultationdiagnosis",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce2b5bc6-2bfb-4190-8ca4-d4ef64e98060",
+          "name": "Add a note to a consultation",
+          "request": {
+            "name": "Add a note to a consultation",
+            "description": {
+              "content": "Add a clinical note (history, observations, preliminary).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "consultationnote",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc16d78e-e5af-4fe2-b6da-14d27fcd9851",
+              "name": "The added note.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "consultationnote",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d2d0ffe-2395-49ce-9cea-c0f38fafe8bf",
+          "name": "Add a discharge instruction",
+          "request": {
+            "name": "Add a discharge instruction",
+            "description": {
+              "content": "Document post-visit patient care instructions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consultation",
+                ":id",
+                "consultationdischargeinstruction",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d74f357-f3f3-48c3-ba75-97f3d2b047e2",
+              "name": "The added discharge instruction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultation",
+                    ":id",
+                    "consultationdischargeinstruction",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ef2cc39-1119-4663-9d62-c11b0913a947",
+          "name": "List consultation items",
+          "request": {
+            "name": "List consultation items",
+            "description": {
+              "content": "Read-only access to all clinical items across types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "consultationitem",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3342dfd-d9db-44dd-9bd6-84ab2d77da5c",
+              "name": "A list of consultation items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "consultationitem",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your installation's unique Provet Cloud ID.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "0",
+      "key": "provet_id"
+    },
+    {
+      "type": "string",
+      "value": "https://provetcloud.com/{{provet_id}}/api/0.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "restapi"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://provetcloud.com/0/oauth2/token/"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "462ed3b6-c752-462a-8996-7db67fc63144",
+    "name": "Provet Cloud REST Appointments Consultations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth. The API is browsable, returns JSON, and is versioned at 0.1. The base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized with OAuth 2.0 - Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps - using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and the \"restapi\" scope. A legacy \"Authorization: Token <key>\" header exists but is deprecated. Integrations must be registered and approved by Provet's support team per installation, so exact request/response schemas are seen against a live instance; the paths below are grounded in the public documentation, and request/response bodies are modeled where the public how-to pages do not print a full schema.\n\nContact Support:\n Name: Provet Cloud (Nordhealth)",
+      "type": "text/plain"
+    }
+  }
+}

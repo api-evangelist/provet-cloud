@@ -1,0 +1,860 @@
+{
+  "item": [
+    {
+      "id": "642c2743-19e0-4154-86fc-d821de42dc0a",
+      "name": "Patients",
+      "description": {
+        "content": "The animals under care.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "986fd628-9605-4512-b051-26a667d05db1",
+          "name": "List patients",
+          "request": {
+            "name": "List patients",
+            "description": {
+              "content": "Fetch patients (animals) with filters such as client ID, name, microchip, species, and modification date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patient",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "microchip",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "species",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "154159ea-8675-46b5-aa2d-c56570bd5318",
+              "name": "A paginated list of patients.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "microchip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "species",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 5134,\n  \"next\": \"string\",\n  \"previous\": \"string\",\n  \"results\": [\n    {\n      \"id\": 9483,\n      \"client\": 7811,\n      \"name\": \"string\",\n      \"species\": 1365,\n      \"breed\": 2112,\n      \"gender\": \"string\",\n      \"microchip\": \"string\",\n      \"weight\": 113.40213944350808,\n      \"deceased\": false,\n      \"date_of_registration\": \"1975-11-03\"\n    },\n    {\n      \"id\": 2816,\n      \"client\": 7706,\n      \"name\": \"string\",\n      \"species\": 5301,\n      \"breed\": 7438,\n      \"gender\": \"string\",\n      \"microchip\": \"string\",\n      \"weight\": 4817.3513802498555,\n      \"deceased\": true,\n      \"date_of_registration\": \"2013-04-13\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cd7bd62-a580-4061-b4d7-6a58229c5f08",
+              "name": "Missing or invalid OAuth 2.0 access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "microchip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "species",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f92a9de0-1088-451c-82d2-40bc62afd31f",
+              "name": "Too Many Requests. Rate limits are per-endpoint over a rolling 60-second window; a Retry-After header indicates how long to wait.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "microchip",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "species",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds to wait before retrying.",
+                  "key": "Retry-After",
+                  "value": "7012"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebf7be86-3e4a-4764-bdfc-4294c7f4871f",
+          "name": "Create a patient",
+          "request": {
+            "name": "Create a patient",
+            "description": {
+              "content": "Create a single patient record linked to a client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patient",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"species\": \"<integer>\",\n  \"breed\": \"<integer>\",\n  \"gender\": \"<string>\",\n  \"microchip\": \"<string>\",\n  \"weight\": \"<number>\",\n  \"deceased\": \"<boolean>\",\n  \"date_of_registration\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c127db88-8927-4c4e-9850-9f96d03e6ee9",
+              "name": "The created patient.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"species\": \"<integer>\",\n  \"breed\": \"<integer>\",\n  \"gender\": \"<string>\",\n  \"microchip\": \"<string>\",\n  \"weight\": \"<number>\",\n  \"deceased\": \"<boolean>\",\n  \"date_of_registration\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4362,\n  \"client\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"species\": \"<integer>\",\n  \"breed\": \"<integer>\",\n  \"gender\": \"<string>\",\n  \"microchip\": \"<string>\",\n  \"weight\": \"<number>\",\n  \"deceased\": \"<boolean>\",\n  \"date_of_registration\": \"<date>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "41deba6f-0089-4934-ace1-4a2d5042f024",
+          "name": "Bulk create patients",
+          "request": {
+            "name": "Bulk create patients",
+            "description": {
+              "content": "Create multiple patients in a single request, with partial success support.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patient",
+                "bulk",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"client\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"species\": \"<integer>\",\n    \"breed\": \"<integer>\",\n    \"gender\": \"<string>\",\n    \"microchip\": \"<string>\",\n    \"weight\": \"<number>\",\n    \"deceased\": \"<boolean>\",\n    \"date_of_registration\": \"<date>\"\n  },\n  {\n    \"client\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"species\": \"<integer>\",\n    \"breed\": \"<integer>\",\n    \"gender\": \"<string>\",\n    \"microchip\": \"<string>\",\n    \"weight\": \"<number>\",\n    \"deceased\": \"<boolean>\",\n    \"date_of_registration\": \"<date>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a5ecfc6-3241-46ec-b090-c2f337452bd2",
+              "name": "Per-record creation results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient",
+                    "bulk",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"client\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"species\": \"<integer>\",\n    \"breed\": \"<integer>\",\n    \"gender\": \"<string>\",\n    \"microchip\": \"<string>\",\n    \"weight\": \"<number>\",\n    \"deceased\": \"<boolean>\",\n    \"date_of_registration\": \"<date>\"\n  },\n  {\n    \"client\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"species\": \"<integer>\",\n    \"breed\": \"<integer>\",\n    \"gender\": \"<string>\",\n    \"microchip\": \"<string>\",\n    \"weight\": \"<number>\",\n    \"deceased\": \"<boolean>\",\n    \"date_of_registration\": \"<date>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e74a0b8-2814-4efc-9e6c-08ded785a3c3",
+          "name": "Update a patient",
+          "request": {
+            "name": "Update a patient",
+            "description": {
+              "content": "Patch patient details such as microchip, weight, or deceased status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "patient",
+                ":id",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"species\": \"<integer>\",\n  \"breed\": \"<integer>\",\n  \"gender\": \"<string>\",\n  \"microchip\": \"<string>\",\n  \"weight\": \"<number>\",\n  \"deceased\": \"<boolean>\",\n  \"date_of_registration\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b46b0d2d-ea6d-4974-a5b4-6228d7f68f90",
+              "name": "The updated patient.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient",
+                    ":id",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"species\": \"<integer>\",\n  \"breed\": \"<integer>\",\n  \"gender\": \"<string>\",\n  \"microchip\": \"<string>\",\n  \"weight\": \"<number>\",\n  \"deceased\": \"<boolean>\",\n  \"date_of_registration\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 4362,\n  \"client\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"species\": \"<integer>\",\n  \"breed\": \"<integer>\",\n  \"gender\": \"<string>\",\n  \"microchip\": \"<string>\",\n  \"weight\": \"<number>\",\n  \"deceased\": \"<boolean>\",\n  \"date_of_registration\": \"<date>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a1671d3-cfc5-4c45-a8dc-c76b194daf63",
+          "name": "Get patient custom field values",
+          "request": {
+            "name": "Get patient custom field values",
+            "description": {},
+            "url": {
+              "path": [
+                "patient",
+                ":id",
+                "custom_field_values",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03ec48a0-0454-4570-816d-67510900f940",
+              "name": "Custom field values for the patient.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient",
+                    ":id",
+                    "custom_field_values",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af09d2f2-4de1-4869-8e38-da44b00ee87c",
+          "name": "Set patient custom field values",
+          "request": {
+            "name": "Set patient custom field values",
+            "description": {},
+            "url": {
+              "path": [
+                "patient",
+                ":id",
+                "custom_field_values",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your installation's unique Provet Cloud ID.",
+                  "type": "any",
+                  "value": "{{provet_id}}",
+                  "key": "provet_id"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4fa5ec5e-41e6-466b-ba4d-3f66ae079424",
+              "name": "Updated custom field values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "patient",
+                    ":id",
+                    "custom_field_values",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your installation's unique Provet Cloud ID.",
+                      "type": "any",
+                      "value": "{{provet_id}}",
+                      "key": "provet_id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your installation's unique Provet Cloud ID.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "0",
+      "key": "provet_id"
+    },
+    {
+      "type": "string",
+      "value": "https://provetcloud.com/{{provet_id}}/api/0.1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "restapi"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://provetcloud.com/0/oauth2/token/"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fe4b5492-8d94-4f35-873e-d281653ea3ba",
+    "name": "Provet Cloud REST Appointments Patients API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth. The API is browsable, returns JSON, and is versioned at 0.1. The base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized with OAuth 2.0 - Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps - using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and the \"restapi\" scope. A legacy \"Authorization: Token <key>\" header exists but is deprecated. Integrations must be registered and approved by Provet's support team per installation, so exact request/response schemas are seen against a live instance; the paths below are grounded in the public documentation, and request/response bodies are modeled where the public how-to pages do not print a full schema.\n\nContact Support:\n Name: Provet Cloud (Nordhealth)",
+      "type": "text/plain"
+    }
+  }
+}

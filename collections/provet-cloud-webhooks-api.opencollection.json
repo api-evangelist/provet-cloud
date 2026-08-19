@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Provet Cloud REST Appointments Webhooks API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://provetcloud.com/0/oauth2/token/",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/webhook/"
+          },
+          "docs": "List webhook subscriptions. Webhooks can also be managed in Settings > General > Integrations > Webhooks; automating creation via the API is recommended. Path modeled from the documented webhook-management behavior."
+        },
+        {
+          "info": {
+            "name": "Create a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/webhook/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook subscription for a trigger, scoped organization-wide or to a department. Provet Cloud POSTs the changed object's ID to the target URL and retries up to 10 times on non-200 responses."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

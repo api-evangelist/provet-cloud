@@ -1,0 +1,167 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Provet Cloud REST Appointments Billing API",
+    "version": "0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://provetcloud.com/0/oauth2/token/",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/invoice/"
+          },
+          "docs": "Retrieve invoices with filtering options."
+        },
+        {
+          "info": {
+            "name": "Full refund (credit note)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/invoice/:id/full_refund/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Generate a complete credit note for an invoice."
+        },
+        {
+          "info": {
+            "name": "Partial refund (credit note)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/invoice/:id/partial_refund/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Generate a partial credit note for selected invoice rows."
+        },
+        {
+          "info": {
+            "name": "List invoice rows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/invoicerow/"
+          },
+          "docs": "Fetch line items for invoices."
+        },
+        {
+          "info": {
+            "name": "Get an invoice row",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/invoicerow/:id/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve an invoice row, optionally exposing related fields."
+        },
+        {
+          "info": {
+            "name": "List invoice payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/invoicepayment/"
+          },
+          "docs": "List invoice payments"
+        },
+        {
+          "info": {
+            "name": "Record an invoice payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/invoicepayment/"
+          },
+          "docs": "Record a payment against a finalized invoice (status 3). Payments can only be recorded against finalized invoices."
+        },
+        {
+          "info": {
+            "name": "Cancel an invoice payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/invoicepayment/:id/cancel_payment/",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Reverse an incorrectly recorded payment."
+        },
+        {
+          "info": {
+            "name": "List unallocated payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/unallocatedpayment/"
+          },
+          "docs": "Retrieve prepayment records and available balances."
+        },
+        {
+          "info": {
+            "name": "Record an unallocated payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://provetcloud.com/{provet_id}/api/0.1/unallocatedpayment/"
+          },
+          "docs": "Record funds received before invoice creation (a prepayment)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
