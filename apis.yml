@@ -226,6 +226,8 @@ apis:
   humanURL: https://developers.provetcloud.com/restapi/howto_clients_patients.html
   baseURL: https://provetcloud.com/{provet_id}/api/0.1
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
