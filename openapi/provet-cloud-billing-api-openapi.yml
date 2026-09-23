@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Provet Cloud REST Appointments Billing API
-  description: 'The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth. The API is browsable, returns JSON, and is versioned at 0.1. The base URL is installation-specific: https://provetcloud.com/<provet_id>/api/0.1/ (or a regional domain such as us.provetcloud.com or enterprise.provetcloud.com). Requests are authorized with OAuth 2.0 - Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps - using the token endpoint https://provetcloud.com/<provet_id>/oauth2/token/ and the "restapi" scope. A legacy "Authorization: Token <key>" header exists but is deprecated. Integrations must be registered and approved by Provet''s support team per installation, so exact request/response schemas are seen against a live instance; the paths below are grounded in the public documentation, and request/response bodies are modeled where the public how-to pages do not print a full schema.'
+  title: Provet Cloud REST Billing API
+  description: The Provet Cloud REST API gives approved integration partners programmatic access to the data in a Provet Cloud veterinary practice management (PIMS) installation built by Nordhealth.
   version: '0.1'
   contact:
     name: Provet Cloud (Nordhealth)
@@ -158,11 +158,13 @@ components:
         count:
           type: integer
         next:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         previous:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         results:
           type: array
           items:

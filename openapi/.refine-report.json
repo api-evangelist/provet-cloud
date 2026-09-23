@@ -1,13 +1,7 @@
 {
   "provider": "provet-cloud",
   "sources": [
-    "provet-cloud-appointments-api-openapi.yml",
-    "provet-cloud-billing-api-openapi.yml",
-    "provet-cloud-clients-api-openapi.yml",
-    "provet-cloud-consultations-api-openapi.yml",
-    "provet-cloud-patients-api-openapi.yml",
-    "provet-cloud-reference-data-api-openapi.yml",
-    "provet-cloud-webhooks-api-openapi.yml"
+    "_original/provet-cloud-openapi.yml"
   ],
   "outputs": [
     "provet-cloud-appointments-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "provet-cloud-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "provet-cloud-appointments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "provet-cloud-billing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "provet-cloud-clients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "provet-cloud-consultations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "provet-cloud-patients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "provet-cloud-reference-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "provet-cloud-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
