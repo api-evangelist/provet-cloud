@@ -143,6 +143,16 @@ paths:
         '200':
           description: Updated custom field values.
 components:
+  responses:
+    RateLimited:
+      description: Too Many Requests. Rate limits are per-endpoint over a rolling 60-second window; a Retry-After header indicates how long to wait.
+      headers:
+        Retry-After:
+          schema:
+            type: integer
+          description: Seconds to wait before retrying.
+    Unauthorized:
+      description: Missing or invalid OAuth 2.0 access token.
   schemas:
     Patient:
       type: object
@@ -187,16 +197,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Patient'
-  responses:
-    RateLimited:
-      description: Too Many Requests. Rate limits are per-endpoint over a rolling 60-second window; a Retry-After header indicates how long to wait.
-      headers:
-        Retry-After:
-          schema:
-            type: integer
-          description: Seconds to wait before retrying.
-    Unauthorized:
-      description: Missing or invalid OAuth 2.0 access token.
   securitySchemes:
     oauth2:
       type: oauth2
