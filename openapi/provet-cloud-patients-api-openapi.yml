@@ -154,6 +154,23 @@ components:
     Unauthorized:
       description: Missing or invalid OAuth 2.0 access token.
   schemas:
+    PatientList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Patient'
     Patient:
       type: object
       description: An animal under care, linked to a client.
@@ -180,23 +197,6 @@ components:
         date_of_registration:
           type: string
           format: date
-    PatientList:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Patient'
   securitySchemes:
     oauth2:
       type: oauth2

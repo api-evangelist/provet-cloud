@@ -260,23 +260,6 @@ paths:
           description: A list of consultation items.
 components:
   schemas:
-    ConsultationList:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Consultation'
     Consultation:
       type: object
       properties:
@@ -298,6 +281,23 @@ components:
           format: date-time
         status:
           type: integer
+    ConsultationList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Consultation'
   securitySchemes:
     oauth2:
       type: oauth2
