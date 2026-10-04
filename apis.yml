@@ -265,6 +265,9 @@ apis:
   - type: APIReference
     url: https://developers.provetcloud.com/restapi/webhook_triggers.html
 common:
+- type: CapabilityMap
+  url: capabilities/provet-cloud-capability-edges.yml
+  name: Provet Cloud Business Capability Map
 - type: AgenticAccess
   url: agentic-access/provet-cloud-agentic-access.yml
 - type: DomainSecurity

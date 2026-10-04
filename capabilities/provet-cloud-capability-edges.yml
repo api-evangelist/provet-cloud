@@ -1,0 +1,35 @@
+slug: provet-cloud
+provider: Provet Cloud
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Billing
+  spec_file: provet-cloud-billing-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.85
+  evidence: GET /invoice/ 'List invoices'; POST /invoice/{id}/partial_refund/ 'Partial refund (credit
+    note)'; POST /invoicepayment/ 'Record an invoice payment'
+  reason: Customer invoicing, credit notes, payment recording and unallocated payment handling is Accounts
+    Receivable Management.
+- tag: Clients
+  spec_file: provet-cloud-clients-api-openapi.yml
+  capability_id: BC-420.10
+  capability_id_l1: BC-420
+  capability_name: Customer Data Management
+  confidence: 0.78
+  evidence: POST /client/ 'Create a client'; PATCH /client/{id}/ 'Update a client'; POST /client/{id}/custom_field_values/
+    'Set client custom field values'
+  reason: CRUD over the client (pet-owner customer) master record including contact phone numbers and
+    custom attributes — customer data management.
