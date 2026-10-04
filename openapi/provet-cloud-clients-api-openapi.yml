@@ -165,6 +165,23 @@ components:
     Unauthorized:
       description: Missing or invalid OAuth 2.0 access token.
   schemas:
+    ClientList:
+      type: object
+      properties:
+        count:
+          type: integer
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Client'
     Client:
       type: object
       description: An animal owner / bill payer.
@@ -187,23 +204,6 @@ components:
           type: integer
         archived:
           type: boolean
-    ClientList:
-      type: object
-      properties:
-        count:
-          type: integer
-        next:
-          type:
-          - string
-          - 'null'
-        previous:
-          type:
-          - string
-          - 'null'
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/Client'
   securitySchemes:
     oauth2:
       type: oauth2
