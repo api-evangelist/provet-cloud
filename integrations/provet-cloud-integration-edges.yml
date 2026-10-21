@@ -1,0 +1,1036 @@
+edges:
+- partner_name: Cetra
+  app: Cetra
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.cetravets.com/
+- partner_name: Cubex
+  app: Cubex
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.cubex.com/
+- partner_name: GlobalVetLink
+  app: GlobalVetLink
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.globalvetlink.com/
+- partner_name: PetLink
+  app: PetLink
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.petlink.net/
+- partner_name: TrustVet
+  app: TrustVet
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.trustvet.com/
+- partner_name: VetEnvoy
+  app: VetEnvoy
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://petios.com/
+- partner_name: VetSnap
+  app: VetSnap
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://go.vetsnap.com/
+- partner_name: VidiVet
+  app: VidiVet
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://vidivet.com/
+- partner_name: Accesia
+  app: Accesia
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://accesia.se/en/
+- partner_name: Djurum
+  app: Djurum
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://djurum.se/
+- partner_name: Dragon Veterinary
+  app: Dragon Veterinary
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.dragonveterinary.com/
+- partner_name: LAIKA
+  app: LAIKA
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://laika.aitemsolutions.com/home
+- partner_name: Modeus
+  app: Modeus
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.modeus.co/
+- partner_name: Sotender
+  app: Sotender
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://sotender.io/
+- partner_name: Talkatoo
+  app: Talkatoo
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://talkatoo.com/
+- partner_name: VetPlan
+  app: VetPlan
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://vetplan.dk/
+- partner_name: Vuorox
+  app: Vuorox
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://vuorox.fi/
+- partner_name: Zafena
+  app: Zafena
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.zafena.se/en/
+- partner_name: eHälsomyndigheten
+  app: eHälsomyndigheten
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.ehalsomyndigheten.se/
+- partner_name: Clinicwise
+  app: Clinicwise
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.clinicwise.vet/
+- partner_name: Petleo
+  app: Petleo
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://pet.petleo.net/
+- partner_name: PetsApp
+  app: PetsApp
+  partner: petsapp
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://petsapp.com/
+- partner_name: Yo Telecom
+  app: Yo Telecom
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://yotelecom.co.uk/
+- partner_name: Atjoo
+  app: Atjoo
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://atjoo.com/
+- partner_name: AllyDVM
+  app: AllyDVM
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.allydvm.com/
+- partner_name: Clever Insight
+  app: Clever Insight
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://clever-insight.com/
+- partner_name: Digital Practice
+  app: Digital Practice
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.digitalpractice.vet/
+- partner_name: PetDesk Phones
+  app: PetDesk Phones
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://petdesk.com/veterinary-phone-system/
+- partner_name: ReviewTree
+  app: ReviewTree
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://reviewtree.com/
+- partner_name: TailPal
+  app: TailPal
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.tailpal.app/
+- partner_name: Weave
+  app: Weave
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.getweave.com/
+  partner_held:
+    candidate: weave
+    why: 'market-fit gate: partner''s own tags carry no veterinary / animal-health / pet term'
+- partner_name: iRecall
+  app: iRecall
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.irecall.vet/uk/
+- partner_name: Inventory Ally
+  app: Inventory Ally
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://inventoryally.com/
+- partner_name: Quinyx
+  app: Quinyx
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.quinyx.com/
+  partner_held:
+    candidate: quinyx
+    why: 'market-fit gate: partner''s own tags carry no veterinary / animal-health / pet term'
+- partner_name: Vetcove
+  app: Vetcove
+  partner: vetcove
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://shop.vetcove.com/
+- partner_name: Nuzoa
+  app: Nuzoa
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.nuzoa.com/
+- partner_name: Berner
+  app: Berner
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.berner.fi/
+- partner_name: Covetrus
+  app: Covetrus
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://covetrus.com/
+- partner_name: MWI Animal Health
+  app: MWI Animal Health
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.mwiah.com/
+- partner_name: NVS
+  app: NVS
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.nvsweb.co.uk/
+- partner_name: Prevett
+  app: Prevett
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://prevett.fi/
+- partner_name: VSSCo
+  app: VSSCo
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://vssco.co.uk/
+- partner_name: Vetstoria
+  app: Vetstoria
+  partner: vetstoria
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.vetstoria.com/
+- partner_name: SweetFish
+  app: SweetFish
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://sweet.fish/
+- partner_name: Xero
+  app: Xero
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.xero.com/
+  partner_held:
+    candidate: xero
+    why: 'market-fit gate: partner''s own tags carry no veterinary / animal-health / pet term'
+- partner_name: Equity
+  app: Equity
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://equity.credit/
+- partner_name: Greenline
+  app: Greenline
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://greenlinepet.com/about
+- partner_name: IMACash
+  app: IMACash
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://en.vincicash.com/imacash-cash-management
+- partner_name: MyBalto
+  app: MyBalto
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.mybaltofoundation.org/
+- partner_name: Reflexion
+  app: Reflexion
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.getreflexion.com/
+- partner_name: Svea
+  app: Svea
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.svea.com/fi-fi/tietoa-meista/yhteistyokumppanit/provet
+- partner_name: VISMA E-conomic
+  app: VISMA E-conomic
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.e-conomic.com/
+- partner_name: VetDynamics
+  app: VetDynamics
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://vetdynamics.co.uk/
+- partner_name: Veterinary value
+  app: Veterinary value
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.veterinaryvalue.com/en/?__hstc=140768173.6a14164a9bbe9a4d51588857c296798c.1745847959101.1763317569552.1763370632544.189&__hssc=140768173.3.1763370632544&__hsfp=2829707450&hsutk=6a14164a9bbe9a4d51588857c296798c&contentType=standard-page
+- partner_name: Walley
+  app: Walley
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.walleypay.com/
+- partner_name: Antech
+  app: Antech
+  partner: antech-diagnostics
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.antechdiagnostics.com/
+- partner_name: Axiom Laboratory
+  app: Axiom Laboratory
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://axiomvetlab.com/
+- partner_name: FuturLab
+  app: FuturLab
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.futurlab.it/
+- partner_name: Idexx
+  app: Idexx
+  partner: idexx-labs
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.idexx.com/en/veterinary/
+- partner_name: Laboklin
+  app: Laboklin
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://laboklin.com/en/
+- partner_name: Movet
+  app: Movet
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.movet.co/
+- partner_name: Zoetis
+  app: Zoetis
+  partner: zoetis
+  partner_match: domain
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.zoetis.com/
+- partner_name: LifeTest
+  app: LifeTest
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://lifetest.dk/
+- partner_name: Triolab
+  app: Triolab
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.triolabvet.se/
+- partner_name: Agria Animal Insurance
+  app: Agria Animal Insurance
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.agria.fi/
+- partner_name: Direktreglerings portalen
+  app: Direktreglerings portalen
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://direktregleringsportalen.se/
+- partner_name: If Insurance
+  app: If Insurance
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.if.fi/en/private-customers
+- partner_name: Lähitapiola
+  app: Lähitapiola
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.lahitapiola.fi/henkilo/
+- partner_name: OP_Pohjola
+  app: OP_Pohjola
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.op.fi/en/home-page
+- partner_name: Pet Proactive
+  app: Pet Proactive
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.petproactive.pet/
+- partner_name: Pohjantähti
+  app: Pohjantähti
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://www.pohjantahti.fi/
+- partner_name: VETi Search
+  app: VETi Search
+  partner: null
+  partner_match: null
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  relationship: platform-app
+  direction: partner-built
+  evidence: https://www.provet.com/integrations
+  category: Provet Cloud integration
+  detected_by: sweep-veterinary-pet.py
+  detected: '2026-10-20'
+  partner_url: https://vetisearch.co.uk/
+generated: '2026-10-20'
+method: searched
+source:
+- https://www.ezyvet.com/integrations
+- https://www.provet.com/integrations
+- https://digitail.com/integrations/
+- https://www.shepherd.vet/integrations/
+- https://instinct.vet/integrations/
+- https://covetrus.com/covetrus-platform/workflow-and-productivity-tools/avimark/
+- https://covetrus.com/covetrus-platform/industry-partners/
+checked:
+- https://covetrus.com/covetrus-platform/industry-partners/
+- https://covetrus.com/covetrus-platform/workflow-and-productivity-tools/avimark/
+- https://digitail.com/integrations/
+- https://instinct.vet/integrations/
+- https://www.ezyvet.com/integrations
+- https://www.provet.com/integrations
+- https://www.shepherd.vet/integrations/
