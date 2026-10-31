@@ -1,4 +1,4 @@
-# Provet Cloud (provet-cloud)
+# Provet Cloud
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,196 +64,135 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Provet Cloud is a cloud-based veterinary practice management system (PIMS) built by [Nordhealth](https://nordhealth.com) for animal clinics, hospitals, and referral practices. It exposes a documented, browsable REST API (version 0.1) that gives approved integration partners programmatic access to clients, patients (animals), consultations, appointments and online booking, invoicing and payments, items, and reference data, plus a webhook system with 60+ triggers for reacting to changes in a Provet Cloud installation.
+Provet Cloud is a cloud-based veterinary practice management system (PIMS) built by Nordhealth for animal clinics, hospitals, and referral practices. It exposes a documented REST API (base https://provetcloud.com/<provet_id>/api/0.1/, regional domains such as us.provetcloud.com) that gives approved integration partners programmatic access to clients, patients (animals), consultations, appointments and online booking, invoicing and payments, items, and reference data, plus a webhook system with 60+ triggers for reacting to changes in a Provet Cloud installation. Access is OAuth 2.0 authorized (Client Credentials for backend services, Authorization Code with PKCE for user-facing apps); integrations are registered and approved by Provet's support team per installation. The documentation at developers.provetcloud.com is freely browsable by any customer or developer.
 
-The base URL is installation-specific: `https://provetcloud.com/<provet_id>/api/0.1/` (regional domains such as `us.provetcloud.com` and `enterprise.provetcloud.com` also exist). Requests return JSON and are authorized with OAuth 2.0 — Client Credentials for backend services, or Authorization Code with PKCE for user-facing apps — via the token endpoint `https://provetcloud.com/<provet_id>/oauth2/token/` and the `restapi` scope. A legacy `Authorization: Token <key>` header exists but is deprecated. Integrations are registered and approved by Provet's support team per installation; the documentation at [developers.provetcloud.com](https://developers.provetcloud.com/restapi/) is freely browsable by any customer or developer.
+**Areas:** Veterinary · Practice Management · PIMS · Healthcare · Nordhealth · Animal Health · Appointments · Billing
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/provet-cloud/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/provet-cloud/refs/heads/main/apis.yml)
+## Provet Cloud on APIs.io
 
-## Tags
+Everything profiled for Provet Cloud is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/provet-cloud/](https://apis.io/providers/provet-cloud/)** — or go straight to one of the APIs or properties below.
 
-- Veterinary
-- Practice Management
-- PIMS
-- Healthcare
-- Nordhealth
-- Animal Health
-- Appointments
-- Billing
+### APIs (7)
 
-## Timestamps
+- [Provet Cloud Appointments API](https://apis.io/apis/provet-cloud/provet-cloud-appointments-api/) — Appointments and online booking.
+- [Provet Cloud Billing API](https://apis.io/apis/provet-cloud/provet-cloud-billing-api/) — Invoices, refunds, and payments.
+- [Provet Cloud Clients API](https://apis.io/apis/provet-cloud/provet-cloud-clients-api/) — Animal owners / bill payers.
+- [Provet Cloud Consultations API](https://apis.io/apis/provet-cloud/provet-cloud-consultations-api/) — Clinical visits and their items.
+- [Provet Cloud Patients API](https://apis.io/apis/provet-cloud/provet-cloud-patients-api/) — The animals under care.
+- [Provet Cloud Reference Data API](https://apis.io/apis/provet-cloud/provet-cloud-reference-data-api/) — Items, departments, users, and code lists.
+- [Provet Cloud Webhooks API](https://apis.io/apis/provet-cloud/provet-cloud-webhooks-api/) — Event subscriptions.
 
-- **Created:** 2026-07-03
-- **Modified:** 2026-07-03
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Provet Cloud Clients API
+#### Agentic access (1)
 
-Manage clients (the animal owners / bill payers) — list and filter clients, create new clients, patch client fields and communication preferences, attach phone numbers, and read or write per-client custom field values.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://developers.provetcloud.com/restapi/howto_clients_patients.html](https://developers.provetcloud.com/restapi/howto_clients_patients.html)
-- **Base URL:** `https://provetcloud.com/{provet_id}/api/0.1`
+- [Provet Cloud Agentic Access](https://apis.io/agentic-access/provet-cloud/provet-cloud-agentic-access/)
 
-#### Tags
+#### Collections (8)
 
-- Clients
-- Owners
-- CRM
+Postman and Open Collection request collections.
 
-#### Properties
+- [Provet Cloud REST API](https://apis.io/collections/provet-cloud/open-provet-cloud/)
+- [Provet Cloud REST Appointments API](https://apis.io/collections/provet-cloud/open-provet-cloud-appointments-api/)
+- [Provet Cloud REST Appointments Billing API](https://apis.io/collections/provet-cloud/open-provet-cloud-billing-api/)
+- [Provet Cloud REST Appointments Clients API](https://apis.io/collections/provet-cloud/open-provet-cloud-clients-api/)
+- [Provet Cloud REST Appointments Consultations API](https://apis.io/collections/provet-cloud/open-provet-cloud-consultations-api/)
+- [Provet Cloud REST Appointments Patients API](https://apis.io/collections/provet-cloud/open-provet-cloud-patients-api/)
+- [Provet Cloud REST Appointments Reference Data API](https://apis.io/collections/provet-cloud/open-provet-cloud-reference-data-api/)
+- [Provet Cloud REST Appointments Webhooks API](https://apis.io/collections/provet-cloud/open-provet-cloud-webhooks-api/)
 
-- [Documentation](https://developers.provetcloud.com/restapi/)
-- [API Reference](https://developers.provetcloud.com/restapi/howto_clients_patients.html)
-- [OpenAPI](openapi/provet-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/provet-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/provet-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Security (2)
 
-### Provet Cloud Patients API
+Authentication, trust centre, and vulnerability disclosure.
 
-Manage patients (the animals) linked to clients — list and filter by client, name, microchip, species, or modification date, create single patients or bulk-create many, patch patient details, and read or write per-patient custom field values.
+- [Provet Cloud Authentication](https://apis.io/security/provet-cloud/provet-cloud-authentication/)
+- [Provet Cloud Domain Security](https://apis.io/security/provet-cloud/provet-cloud-domain-security/)
 
-- **Human URL:** [https://developers.provetcloud.com/restapi/howto_clients_patients.html](https://developers.provetcloud.com/restapi/howto_clients_patients.html)
-- **Base URL:** `https://provetcloud.com/{provet_id}/api/0.1`
+#### OAuth scopes (1)
 
-#### Tags
+The permissions the API asks for.
 
-- Patients
-- Animals
-- Medical Records
+- [Provet Cloud Scopes](https://apis.io/scopes/provet-cloud/provet-cloud-scopes/)
 
-#### Properties
+#### Plans and pricing (1)
 
-- [API Reference](https://developers.provetcloud.com/restapi/howto_clients_patients.html)
-- [OpenAPI](openapi/provet-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/provet-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/provet-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published plans, tiers and prices.
 
-### Provet Cloud Appointments API
+- [Provet Cloud Plans Pricing](https://apis.io/plans/provet-cloud/provet-cloud-plans-pricing/)
 
-Create appointments and drive an online booking platform — book appointments against a department, reason, and supervising user, send confirmations, create reminders, and register online-booking clients and patients.
+#### Rate limits (1)
 
-- **Human URL:** [https://developers.provetcloud.com/restapi/howto_appointments.html](https://developers.provetcloud.com/restapi/howto_appointments.html)
-- **Base URL:** `https://provetcloud.com/{provet_id}/api/0.1`
+Published request limits.
 
-#### Tags
+- [Provet Cloud Rate Limits](https://apis.io/rate-limits/provet-cloud/provet-cloud-rate-limits/)
 
-- Appointments
-- Online Booking
-- Scheduling
+#### FinOps (1)
 
-#### Properties
+What the API costs to run, by operation.
 
-- [API Reference](https://developers.provetcloud.com/restapi/howto_appointments.html)
-- [OpenAPI](openapi/provet-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/provet-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/provet-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Provet Cloud Finops](https://apis.io/finops/provet-cloud/provet-cloud-finops/)
 
-### Provet Cloud Consultations API
+## Where to find this API
 
-Create and manage consultations (clinical visits) — create and filter consultations, advance their lifecycle with `update_status`, mark them sent to external systems, and attach clinical items (medicines, procedures, supplies, foods), diagnoses, notes, and discharge instructions.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [https://developers.provetcloud.com/restapi/howto_consultations.html](https://developers.provetcloud.com/restapi/howto_consultations.html)
-- **Base URL:** `https://provetcloud.com/{provet_id}/api/0.1`
-
-#### Tags
-
-- Consultations
-- Clinical
-- Treatment
-
-#### Properties
-
-- [API Reference](https://developers.provetcloud.com/restapi/howto_consultations.html)
-- [OpenAPI](openapi/provet-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/provet-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/provet-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Provet Cloud Billing & Invoicing API
-
-Read invoices and invoice rows, issue full or partial refunds (credit notes), record and cancel payments against finalized invoices, and record unallocated prepayments and read their balances. Supports ERP and accounting integration back-ends.
-
-- **Human URL:** [https://developers.provetcloud.com/restapi/howto_billing.html](https://developers.provetcloud.com/restapi/howto_billing.html)
-- **Base URL:** `https://provetcloud.com/{provet_id}/api/0.1`
-
-#### Tags
-
-- Billing
-- Invoicing
-- Payments
-
-#### Properties
-
-- [API Reference](https://developers.provetcloud.com/restapi/howto_billing.html)
-- [OpenAPI](openapi/provet-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/provet-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/provet-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Provet Cloud Items & Reference Data API
-
-Read the master item catalog (medicines, procedures, supplies, foods), departments, appointment reasons, users, custom field definitions, and code lists (species, breeds, diagnoses) used as reference data across the API.
-
-- **Human URL:** [https://developers.provetcloud.com/restapi/endpoints.html](https://developers.provetcloud.com/restapi/endpoints.html)
-- **Base URL:** `https://provetcloud.com/{provet_id}/api/0.1`
-
-#### Tags
-
-- Items
-- Products
-- Reference Data
-- Departments
-
-#### Properties
-
-- [API Reference](https://developers.provetcloud.com/restapi/endpoints.html)
-- [OpenAPI](openapi/provet-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/provet-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/provet-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Provet Cloud Webhooks API
-
-Subscribe to changes in a Provet Cloud installation. Provet Cloud POSTs an event (with the changed object's ID) to a configured URL for 60+ triggers across clients, patients, consultations, appointments, invoices, stock, imaging, labs, and communications; webhooks can be scoped organization-wide or to a department and are retried up to 10 times.
-
-- **Human URL:** [https://developers.provetcloud.com/restapi/webhooks.html](https://developers.provetcloud.com/restapi/webhooks.html)
-- **Base URL:** `https://provetcloud.com/{provet_id}/api/0.1`
-
-#### Tags
-
-- Webhooks
-- Events
-- Notifications
-
-#### Properties
-
-- [Documentation](https://developers.provetcloud.com/restapi/webhooks.html)
-- [API Reference](https://developers.provetcloud.com/restapi/webhook_triggers.html)
-- [OpenAPI](openapi/provet-cloud-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/provet-cloud.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/provet-cloud.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/provetcloud)
 - [Website](https://www.provet.cloud)
 - [Documentation](https://developers.provetcloud.com/restapi/)
-- [Plans](plans/provet-cloud-plans-pricing.yml)
-- [Rate Limits](rate-limits/provet-cloud-rate-limits.yml)
-- [Fin Ops](finops/provet-cloud-finops.yml)
+- [Blog](https://www.provet.com/blog)
 
-## Authentication
+## API Evangelist rating
 
-OAuth 2.0. Two grant types are supported:
+**Kin Score 26.3** — thin · rubric 0.24.0 · scored 2026-10-17
 
-- **Client Credentials** — backend service-to-service access with no user interaction.
-- **Authorization Code (with PKCE)** — user-facing apps where a user authorizes access as themselves. PKCE is required for public clients.
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 39.1 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 7.9 |
 
-Token endpoint: `https://provetcloud.com/<provet_id>/oauth2/token/` · Authorization endpoint: `https://provetcloud.com/<provet_id>/oauth2/authorize/` · Scope: `restapi` (and optional `openid`). Access tokens last ~10 hours; refresh tokens ~30 days from last use. Integrations must be registered and approved by Provet's support team, which issues a `client_id` and `client_secret`. The legacy `Authorization: Token <key>` header is deprecated.
+**Agent readiness 29.1** — agent-ready
 
-## Rate Limits
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | verified |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-Rate limits are enforced per endpoint over a rolling 60-second window and are additive across endpoints. Exceeding a limit returns `HTTP 429 Too Many Requests` with a `Retry-After` header. Requesting a larger custom page size consumes requests proportional to the default page size. See [rate-limits/provet-cloud-rate-limits.yml](rate-limits/provet-cloud-rate-limits.yml).
+**Regulatory alignment 22.7** — Health
 
-## Maintainers
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/provet-cloud/](https://apis.io/providers/provet-cloud/).
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Provet Cloud: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/provet-cloud/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
